@@ -2,9 +2,9 @@
 layout: post
 title: Why blog your work?
 subtitle: Why I chose to start this site
-cover-img: /assets/img/path.jpg
-thumbnail-img: /assets/img/thumb.png
-share-img: /assets/img/path.jpg
+cover-img: /assets/img/images.png
+thumbnail-img: /assets/img/images.png
+share-img: /assets/img/images.jpg
 tags: 
 author: Aadarsh Ramachandran
 ---
