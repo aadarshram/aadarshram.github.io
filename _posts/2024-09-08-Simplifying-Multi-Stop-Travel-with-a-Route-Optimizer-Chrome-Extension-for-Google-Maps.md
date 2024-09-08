@@ -22,7 +22,7 @@ So how does the extension work? You enter your locations in Google Maps opened i
 
 Consider the below image, as an example, where the desired locations to be visited are, in general, somewhere in San Fransisco, San Jose, Sunnyvale, New York and Texas. You input the order shown (San Fransisco -> Texas -> Sunnyvale -> New York -> San Jose -> San Fransisco) and the map shows your route. Clearly, it is not optimal.
 ![Example search](/assets/img/before.png)
-To get the optimal order, you open the RouteOptimizer extension and answer 'Yes' for the 'Is this a round trip?' question, since we start and end at San Fransisco. Then, clicking 'Find Optimal Route' button will send the input location data to the backend sever where an API for the optimizer model is present. It then opens another tab with the optimal order in map.
+To get the optimal order, you open the RouteOptimizer extension and answer 'Yes' for the 'Is this a round trip?' question, since we start and end at San Fransisco. Then, clicking 'Find Optimal Route' button will send the input location data to the backend server where an API for the optimizer model is present. It then opens another tab with the optimal order in map.
 ![After Optimizing](/assets/img/after.png)
 As it can be seen, the order is clearly better. (If you notice something fishy, check the *Note-* at the end of the post.)
 
