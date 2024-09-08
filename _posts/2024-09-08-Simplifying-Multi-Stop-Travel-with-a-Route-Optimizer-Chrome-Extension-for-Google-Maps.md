@@ -2,8 +2,8 @@
 layout: post
 title: Simplifying Multi-Stop Travel with a Route Optimizer Chrome Extension for Google Maps
 subtitle: Stop Guessing, Start Optimizing!
-cover-img: /assets/img/maps.png
-thumbnail-img: /assets/img/maps.png
+cover-img: /assets/img/maps.jpg
+thumbnail-img: /assets/img/maps.jpg
 share-img: /assets/img/maps.jpg
 tags: 
 author: Aadarsh Ramachandran
