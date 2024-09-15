@@ -1,40 +1,30 @@
----
----
-
-html, html[data-theme="light"] {
-/* 	--link-color: rgb(0, 112, 201); */
-  --main-background-color: hsl(0, 0%, 90%);
-  --main-text-color: hsl(0, 0%, 20%);
+/* Add smooth transitions */
+html {
+  transition: background-color 0.3s, color 0.3s;
 }
 
-html[data-theme="dark"] {
-/*   --link-color: rgb( 100, 210, 255); */
-  --main-background-color: hsl(0, 0%, 20%);
-  --main-text-color: hsl(0, 0%, 85%); 
+/* Define dark theme styles */
+[data-theme='dark'] {
+  background-color: #121212;
+  color: #e0e0e0;
 }
 
-
-@media (prefers-color-scheme: dark) {
-    html, html[data-theme="dark"] {
-/*       --link-color: rgb( 100, 210, 255); */
-    	--main-background-color: hsl(0, 0%, 20%);
-    	--main-text-color: hsl(0, 0%, 85%); 
-    }
-
-    html[data-theme="light"] {
-		  --link-color: rgb(0, 112, 201);
-    	--main-background-color: hsl(0, 0%, 90%);
-  	 --main-text-color: hsl(0, 0%, 20%);
-  } 
+/* Define light theme styles */
+[data-theme='light'] {
+  background-color: #ffffff;
+  color: #000000;
 }
 
-
-body {
-	background-color: var(--main-background-color);
-	color: var(--main-text-color);
+/* Optional: Adjust link colors */
+a {
+  color: inherit;
+  transition: color 0.3s;
 }
 
-/* a {
-	color: var(--link-color);
+[data-theme='dark'] a {
+  color: #bb86fc;
 }
- */
+
+[data-theme='light'] a {
+  color: #1a73e8;
+}
