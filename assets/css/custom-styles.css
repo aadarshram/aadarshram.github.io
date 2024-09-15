@@ -15,16 +15,22 @@ html {
   color: #000000;
 }
 
+/* Style for theme toggle icon */
+#theme-icon {
+  font-size: 1.2em; /* Adjust size as needed */
+  transition: color 0.3s;
+}
+
+[data-theme='dark'] #theme-icon {
+  color: #f1c40f; /* Example color for moon icon in dark mode */
+}
+
+[data-theme='light'] #theme-icon {
+  color: #2c3e50; /* Example color for sun icon in light mode */
+}
+
 /* Optional: Adjust link colors */
 a {
   color: inherit;
   transition: color 0.3s;
-}
-
-[data-theme='dark'] a {
-  color: #bb86fc;
-}
-
-[data-theme='light'] a {
-  color: #1a73e8;
 }
