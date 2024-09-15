@@ -1,0 +1,17 @@
+/* Default (Light Mode) */
+:root {
+  --background-color: white;
+  --text-color: black;
+}
+
+/* Dark Mode */
+[data-theme="dark"] {
+  --background-color: black;
+  --text-color: white;
+}
+
+/* Apply the variables */
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
