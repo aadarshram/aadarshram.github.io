@@ -1,11 +1,19 @@
 document.addEventListener("DOMContentLoaded", () => {
   const systemInitiatedDark = window.matchMedia("(prefers-color-scheme: dark)");
   const themeToggleButton = document.getElementById("theme-toggle");
+  const themeIcon = document.getElementById("theme-icon");
+  const themeText = document.getElementById("theme-text");
   let theme = sessionStorage.getItem('theme');
 
   const applyTheme = (theme) => {
     document.documentElement.setAttribute('data-theme', theme);
-    themeToggleButton.innerHTML = theme === 'dark' ? "Light Mode" : "Dark Mode";
+    if (theme === 'dark') {
+      themeIcon.className = 'fa fa-sun'; // Change to sun icon for dark mode
+      themeText.textContent = "Light Mode";
+    } else {
+      themeIcon.className = 'fa fa-moon'; // Moon icon for light mode
+      themeText.textContent = "Dark Mode";
+    }
   };
 
   const handleSystemPreference = () => {
