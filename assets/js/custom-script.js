@@ -1,23 +1,53 @@
-<script>
-  const toggleTheme = () => {
-    const currentTheme = document.documentElement.getAttribute("data-theme");
-    const newTheme = currentTheme === "dark" ? "light" : "dark";
-    document.documentElement.setAttribute("data-theme", newTheme);
-    localStorage.setItem("theme", newTheme);
+let systemInitiatedDark = window.matchMedia("(prefers-color-scheme: dark)"); 
+let theme = sessionStorage.getItem('theme');
 
-    // Update button icon based on the theme
-    const themeIcon = document.getElementById("theme-toggle-icon");
-    themeIcon.className = newTheme === "dark" ? "fa fa-sun-o" : "fa fa-moon-o";
-  };
+if (systemInitiatedDark.matches) {
+	document.getElementById("theme-toggle").innerHTML = "Light Mode";
+} else {
+	document.getElementById("theme-toggle").innerHTML = "Dark Mode";
+}
 
-  // Apply saved theme from localStorage or default to light
-  const savedTheme = localStorage.getItem("theme") || "light";
-  document.documentElement.setAttribute("data-theme", savedTheme);
+function prefersColorTest(systemInitiatedDark) {
+  if (systemInitiatedDark.matches) {
+  	document.documentElement.setAttribute('data-theme', 'dark');		
+   	document.getElementById("theme-toggle").innerHTML = "Light Mode";
+   	sessionStorage.setItem('theme', '');
+  } else {
+  	document.documentElement.setAttribute('data-theme', 'light');
+    document.getElementById("theme-toggle").innerHTML = "Dark Mode";
+    sessionStorage.setItem('theme', '');
+  }
+}
+systemInitiatedDark.addListener(prefersColorTest);
 
-  // Update button icon based on the theme
-  const themeIcon = document.getElementById("theme-toggle-icon");
-  themeIcon.className = savedTheme === "dark" ? "fa fa-sun-o" : "fa fa-moon-o";
 
-  // Attach the toggle function to the button
-  document.getElementById("theme-toggle").addEventListener("click", toggleTheme);
-</script>
+function modeSwitcher() {
+	let theme = sessionStorage.getItem('theme');
+	if (theme === "dark") {
+		document.documentElement.setAttribute('data-theme', 'light');
+		sessionStorage.setItem('theme', 'light');
+		document.getElementById("theme-toggle").innerHTML = "Dark Mode";
+	}	else if (theme === "light") {
+		document.documentElement.setAttribute('data-theme', 'dark');
+		sessionStorage.setItem('theme', 'dark');
+		document.getElementById("theme-toggle").innerHTML = "Light Mode";
+	} else if (systemInitiatedDark.matches) {	
+		document.documentElement.setAttribute('data-theme', 'light');
+		sessionStorage.setItem('theme', 'light');
+		document.getElementById("theme-toggle").innerHTML = "Dark Mode";
+	} else {
+		document.documentElement.setAttribute('data-theme', 'dark');
+		sessionStorage.setItem('theme', 'dark');
+		document.getElementById("theme-toggle").innerHTML = "Light Mode";
+	}
+}
+
+if (theme === "dark") {
+	document.documentElement.setAttribute('data-theme', 'dark');
+	sessionStorage.setItem('theme', 'dark');
+	document.getElementById("theme-toggle").innerHTML = "Light Mode";
+} else if (theme === "light") {
+	document.documentElement.setAttribute('data-theme', 'light');
+	sessionStorage.setItem('theme', 'light');
+	document.getElementById("theme-toggle").innerHTML = "Dark Mode";
+}
