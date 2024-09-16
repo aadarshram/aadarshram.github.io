@@ -1,36 +1,72 @@
-/* Add smooth transitions */
-html {
-  transition: background-color 0.3s, color 0.3s;
+:root {
+  --darkbg: #2d2d2d; /* dark background */
+  --darkt: #f5f5f5;  /* light text in dark mode */
+  --lightbg: #ffffff; /* light background */
+  --lightt: #333333;  /* dark text in light mode */
+  
+  --toggleHeight: 16em;
+  --toggleWidth: 30em;
+  --toggleBtnRadius: 10em;
+
+  --bgColor--night: #444444; /* darker gray */
+  --toggleBtn-bgColor--night: var(--bgColor--night);
+  --mooncolor: #f7f7f7; /* soft white for moon */
+  --bgColor--day: #eaeaea; /* light gray for day */
+  --toggleBtn-bgColor--day: var(--bgColor--day);
 }
 
-/* Define dark theme styles */
-[data-theme='dark'] {
-  background-color: #121212;
-  color: #e0e0e0;
+body {
+  transition: all .2s ease-in-out;
+  background: var(--darkbg);
+  color: var(--darkt);
+  text-align: center;
 }
 
-/* Define light theme styles */
-[data-theme='light'] {
-  background-color: #ffffff;
-  color: #000000;
+.light {
+  background: var(--lightbg);
+  color: var(--lightt);
 }
 
-/* Style for theme toggle icon */
-#theme-icon {
-  font-size: 1.2em; /* Adjust size as needed */
-  transition: color 0.3s;
+.tdnn {
+  margin: 0 auto;
+  font-size: 30%;
+  margin-top: 10em;
+  position: relative;
+  height: var(--toggleHeight);
+  width: var(--toggleWidth);
+  border-radius: var(--toggleHeight);
+  transition: all 500ms ease-in-out;
+  background: var(--bgColor--night);
 }
 
-[data-theme='dark'] #theme-icon {
-  color: #f1c40f; /* Example color for moon icon in dark mode */
+.day {
+  background: var(--bgColor--day);
 }
 
-[data-theme='light'] #theme-icon {
-  color: #2c3e50; /* Example color for sun icon in light mode */
+.moon {
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+  transition: all 400ms ease-in-out;
+  top: 3em;
+  left: 3em;
+  transform: rotate(-75deg);
+  width: var(--toggleBtnRadius);
+  height: var(--toggleBtnRadius);
+  background: var(--bgColor--night);
+  box-shadow:
+    3em 2.5em 0 0em var(--mooncolor) inset,
+    rgba(255, 255, 255, 0.1) 0em -7em 0 -4.5em,
+    rgba(255, 255, 255, 0.1) 3em 7em 0 -4.5em,
+    rgba(255, 255, 255, 0.1) 2em 13em 0 -4em;
 }
 
-/* Optional: Adjust link colors */
-a {
-  color: inherit;
-  transition: color 0.3s;
+.sun {
+  top: 4.5em;
+  left: 18em;
+  transform: rotate(0deg);
+  width: 7em;
+  height: 7em;
+  background: #fff;
+  box-shadow: 3em 3em 0 5em #fff inset;
 }
