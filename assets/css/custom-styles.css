@@ -59,13 +59,6 @@ input:focus + .slider {
   border-radius: 50%;
 }
 
-/* Light mode (default) */
-body {
-  background-color: #ffffff; /* Light background */
-  color: #000000; /* Dark text */
-  transition: background-color 0.5s ease, color 0.5s ease;
-}
-
 /* Dark mode */
 body.dark-mode {
   background-color: #252525; /* Dark background */
@@ -73,9 +66,6 @@ body.dark-mode {
 }
 
 /* Additional styling for elements inside dark mode */
-.navbar {
-  background-color: #373636;
-}
 
 .slider {
   background-color: #cccccc;
@@ -83,5 +73,15 @@ body.dark-mode {
 
 input:checked + .slider {
   background-color: #4d4d4d;
+}
+
+[data-theme='dark'] a {
+  color: #ffffff; /* White color for dark mode */
+}
+
+/* Link hover color in dark mode */
+[data-theme='dark'] a:hover,
+[data-theme='dark'] a:focus {
+  color: #0000ff; /* Blue color on hover for dark mode */
 }
 
