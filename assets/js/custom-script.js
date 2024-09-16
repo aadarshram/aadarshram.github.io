@@ -1,39 +1,46 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const systemInitiatedDark = window.matchMedia("(prefers-color-scheme: dark)");
-  const themeToggleButton = document.getElementById("theme-toggle");
-  const themeIcon = document.getElementById("theme-icon");
-  const themeText = document.getElementById("theme-text");
-  let theme = sessionStorage.getItem('theme');
+// Function to toggle dark/light mode
+function toggleDarkMode() {
+  const body = document.body;
+  const currentMode = body.classList.contains("dark-mode") ? "dark" : "light";
 
-  const applyTheme = (theme) => {
-    document.documentElement.setAttribute('data-theme', theme);
-    if (theme === 'dark') {
-      themeIcon.className = 'fa fa-sun'; // Change to sun icon for dark mode
-      themeText.textContent = "Light Mode";
-    } else {
-      themeIcon.className = 'fa fa-moon'; // Moon icon for light mode
-      themeText.textContent = "Dark Mode";
-    }
-  };
+  // Toggle dark-mode class on body
+  body.classList.toggle("dark-mode");
 
-  const handleSystemPreference = () => {
-    const preferredTheme = systemInitiatedDark.matches ? 'dark' : 'light';
-    if (!theme) {
-      applyTheme(preferredTheme);
-      sessionStorage.setItem('theme', preferredTheme);
-    } else {
-      applyTheme(theme);
-    }
-  };
+  // Update the icons (sun/moon)
+  const slider = document.querySelector(".slider:before");
+  const isChecked = document.querySelector(".switch input").checked;
 
-  const modeSwitcher = () => {
-    const newTheme = theme === 'dark' ? 'light' : 'dark';
-    applyTheme(newTheme);
-    sessionStorage.setItem('theme', newTheme);
-  };
+  if (isChecked) {
+    slider.style.content = "\f186"; // Font Awesome sun
+  } else {
+    slider.style.content = "\f185"; // Font Awesome moon
+  }
 
-  systemInitiatedDark.addEventListener('change', handleSystemPreference);
-  themeToggleButton.addEventListener('click', modeSwitcher);
+  // Save the user's preference in localStorage
+  const newMode = currentMode === "light" ? "dark" : "light";
+  localStorage.setItem("theme", newMode);
+}
 
-  handleSystemPreference(); // Apply theme based on initial preference
+// Check local storage to maintain the user's theme preference
+window.onload = function() {
+  const savedTheme = localStorage.getItem("theme");
+
+  if (savedTheme === "dark") {
+    document.body.classList.add("dark-mode");
+    document.querySelector('.switch input').checked = true;
+    document.querySelector(".slider:before").style.content = "\f186"; // Sun icon
+  } else {
+    document.body.classList.remove("dark-mode");
+    document.querySelector('.switch input').checked = false;
+    document.querySelector(".slider:before").style.content = "\f185"; // Moon icon
+  }
+};
+
+// Add event listener to the checkbox for the theme switch
+document.addEventListener("DOMContentLoaded", function () {
+  const toggleSwitch = document.querySelector(".switch input");
+
+  toggleSwitch.addEventListener("change", function() {
+    toggleDarkMode();
+  });
 });
