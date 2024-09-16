@@ -118,3 +118,28 @@ body.dark-mode code {
   background-color: #282828; /* Dark background for code */
   color: #e0e0e0;
 }
+
+.post-content {
+  display: flex;
+  align-items: flex-start;
+}
+
+.post-thumbnail {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.post-thumbnail img {
+  max-width: 100%;
+  height: auto;
+}
+
+.post-excerpt {
+  flex: 2;
+}
+
+.post-excerpt h2,
+.post-excerpt h3 {
+  margin-top: 0;
+}
+
