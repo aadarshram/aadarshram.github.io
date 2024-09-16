@@ -62,7 +62,7 @@ input:focus + .slider {
 /* Dark mode styles */
 body.dark-mode {
   background-color: #121212; /* Dark background color */
-  color: #e0e0e0; /* Light text color for readability */
+  color: #faf9f6; /* Light text color for readability */
 }
 
 /* Dark mode for header */
@@ -73,25 +73,25 @@ body.dark-mode header {
 
 /* Dark mode for links */
 body.dark-mode a {
-  color: #bb86fc; /* Light color for links */
+  color: #faf9f6; /* Light color for links */
 }
 
 /* Dark mode for main content */
 body.dark-mode .main-content {
-  background-color: #1e1e1e; /* Darker background for main content */
-  color: #e0e0e0;
+  background-color: #1f1f1f; /* Darker background for main content */
+  color: #faf9f6;
 }
 
 /* Dark mode for footer */
 body.dark-mode footer {
   background-color: #1f1f1f;
-  color: #e0e0e0;
+  color: #faf9f6;
 }
 
 /* Dark mode for buttons */
 body.dark-mode button {
   background-color: #333; /* Dark background for buttons */
-  color: #e0e0e0;
+  color: #faf9f6;
   border: 1px solid #555; /* Border color for buttons */
 }
 
@@ -103,7 +103,7 @@ body.dark-mode button:hover {
 body.dark-mode input,
 body.dark-mode textarea {
   background-color: #333; /* Dark background for inputs */
-  color: #e0e0e0; /* Light text color for inputs */
+  color: #faf9f6; /* Light text color for inputs */
   border: 1px solid #555; /* Border color for inputs */
 }
 
