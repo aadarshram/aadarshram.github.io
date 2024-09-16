@@ -2,8 +2,8 @@
     .switch {
       position: relative;
       display: inline-block;
-      width: 60px;
-      height: 34px;
+      width: 6px;
+      height: 4px;
     }
 
     .switch input { 
@@ -29,7 +29,7 @@
       content: "\f186"; /* Font Awesome sun (default) */
       font-family: 'Font Awesome 5 Free';
       font-weight: 900;
-      font-size: 18px;
+      font-size: 2px;
       color: #373636;
       left: 10px;
       bottom: 6px;
@@ -38,9 +38,9 @@
 
     input:checked + .slider:before {
       content: "\f185"; /* Font Awesome moon */
-      font-size: 18px;
+      font-size: 2px;
       color: #373636;
-      transform: translateX(26px);
+      transform: translateX(3px);
     }
 
     input:checked + .slider {
@@ -54,7 +54,7 @@
 
     /* Rounded sliders */
     .slider.round {
-      border-radius: 34px;
+      border-radius: 2px;
     }
 
     .slider.round:before {
