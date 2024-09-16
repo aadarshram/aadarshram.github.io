@@ -1,9 +1,10 @@
 .switch {
   position: relative;
   display: inline-block;
-  width: 40px; /* Adjust the width to fit better in the navbar */
-  height: 20px; /* Adjust the height as needed */
+  width: 50px; /* Adjust the width to fit better in the navbar */
+  height: 30px; /* Adjust the height as needed */
   margin-left: 10px; /* Add space to the left, adjust for navbar spacing */
+  margin-top: 14px;
   vertical-align: middle; /* Ensure alignment with other navbar items */
 }
 
