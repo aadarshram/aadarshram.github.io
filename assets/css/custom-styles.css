@@ -58,30 +58,3 @@ input:focus + .slider {
 .slider.round:before {
   border-radius: 50%;
 }
-
-/* Dark mode */
-body.dark-mode {
-  background-color: #252525; /* Dark background */
-  color: #ffffff; /* Light text */
-}
-
-/* Additional styling for elements inside dark mode */
-
-.slider {
-  background-color: #cccccc;
-}
-
-input:checked + .slider {
-  background-color: #4d4d4d;
-}
-
-[data-theme='dark'] a {
-  color: #ffffff; /* White color for dark mode */
-}
-
-/* Link hover color in dark mode */
-[data-theme='dark'] a:hover,
-[data-theme='dark'] a:focus {
-  color: #0000ff; /* Blue color on hover for dark mode */
-}
-
