@@ -1,12 +1,5 @@
 github_users:
-  - username1
-  - username2
-  - username3
+  - aadarshram
 
 github_repos:
-  - name: repo1
-    url: https://github.com/user/repo1
-    description: Description of repo1
-  - name: repo2
-    url: https://github.com/user/repo2
-    description: Description of repo2
+  - AshwinRamachandran2002/Visual-Perception-for-Self-Driving-Cars
