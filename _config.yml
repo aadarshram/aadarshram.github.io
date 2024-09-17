@@ -22,6 +22,7 @@ author: Aadarsh Ramachandran
 navbar-links:
   Home: "https://aadarshram.github.io"
   About Me: "aboutme"
+  Repositories: "repositories"
   Contact: "contact"
   # Resources:
   #   - Beautiful Jekyll: "https://beautifuljekyll.com"
