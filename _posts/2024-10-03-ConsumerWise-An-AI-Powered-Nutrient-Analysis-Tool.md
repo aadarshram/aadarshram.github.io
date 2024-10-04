@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Introducing ConsumerWise: An AI-Powered Nutrient Analysis Tool
+title: Introducing ConsumerWise- An AI-Powered Nutrient Analysis Tool
 subtitle: Your all-in-one nutrition analysis app designed to empower informed decisions about your diet.
 cover-img: /assets/img/consumerwise_cover.jpg
 thumbnail-img: /assets/img/consumerwise_logo.jpg
@@ -9,7 +9,6 @@ tags: Web Application, Google Cloud, Gen-AI
 author: Aadarsh Ramachandran
 readtime: true
 ---
-
 In today's fast-paced world, people don’t really have the time to analyze the complex nutritional details on packaged food product labels. Even when they do, understanding what the numbers mean for their diet or health goals can be overwhelming. That’s where ConsumerWise comes in. This is a solution myself and my friends, Harshith MR, Krishna Murari C and Sri Prakash developed in an attempt to address this problem.
 
 ConsumerWise is a web application powered by modern-day Generative AI, designed to help users make informed decisions about their food choices. With so much confusing information on nutrition labels, ConsumerWise simplifies the process by scanning food labels and breaking down the nutritional information into easy-to-understand visual aids and text descriptions. But that's not all. It also offers a chatbot- NutriBot, that users can chat with to gain further insight on the product or ask anything else! It’s like having a nutritionist right in your pocket.
@@ -37,7 +36,7 @@ The project uses a combination of cutting-edge tools to achieve its goals:
 
 ## Sample Demonstration
 <video width="600" controls>
-  <source src="path_to_your_video.mp4" type="video/mp4">
+  <source src="/assets/consumerwise_demo.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
