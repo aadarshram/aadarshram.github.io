@@ -9,7 +9,7 @@ tags: Web Application, Google Cloud, Gen-AI
 author: Aadarsh Ramachandran
 readtime: true
 ---
-In today's fast-paced world, people don’t really have the time to analyze the complex nutritional details on packaged food product labels. Even when they do, understanding what the numbers mean for their diet or health goals can be overwhelming. That’s where ConsumerWise comes in. This is a solution myself and my friends, Harshith MR, Krishna Murari C and Sri Prakash developed in an attempt to address this problem.
+In today's fast-paced world, people don’t really have the time to analyze the complex nutritional details on packaged food product labels. Even when they do, understanding what the numbers mean for their diet or health goals can be overwhelming. That’s where ConsumerWise comes in. This is a solution myself and my friends, [Harshith MR](https://www.linkedin.com/in/harshith-m-r-341b9329a/), [Krishna Murari C](https://www.linkedin.com/in/krishnamurari-chivukula-5194751a7/) and Sri Prakash developed in an attempt to address this problem.
 
 ConsumerWise is a web application powered by modern-day Generative AI, designed to help users make informed decisions about their food choices. With so much confusing information on nutrition labels, ConsumerWise simplifies the process by scanning food labels and breaking down the nutritional information into easy-to-understand visual aids and text descriptions. But that's not all. It also offers a chatbot- NutriBot, that users can chat with to gain further insight on the product or ask anything else! It’s like having a nutritionist right in your pocket.
 
