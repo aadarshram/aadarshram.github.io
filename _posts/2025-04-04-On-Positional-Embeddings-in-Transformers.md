@@ -7,6 +7,9 @@ author: Aadarsh Ramachandran
 readtime: true
 ---
 
+_Note: The math symbols may not appear appropriately here. I'll try to correct this. Till then, please refer to my [gist](https://gist.github.com/aadarshram/a43e1367114cad822ce2d41181449c1d) on the same._   
+
+
 -_Disclaimer: This post is purely a reflection of my understanding of the concepts. I am learning along the way and may be wrong sometimes. I would recommend reading expert articles and research papers for a first-time understanding._
 
 ## Introduction
