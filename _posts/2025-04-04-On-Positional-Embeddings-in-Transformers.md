@@ -1,14 +1,13 @@
 ---
 layout: post
 title: On Positional Embeddings in Transformers
-subtitle: An intuitive exploration of the idea behind positional embeddings, particularly, the sinusoidal position embeddings.
+subtitle: An intuitive exploration of the idea behind positional embeddings.
 tags: Concept, Research
+comments: true
+mathjax: true
 author: Aadarsh Ramachandran
 readtime: true
 ---
-
-_Note: The math symbols may not appear appropriately here. I'll try to correct this. Till then, please refer to my [gist](https://gist.github.com/aadarshram/a43e1367114cad822ce2d41181449c1d) on the same._   
-
 
 -_Disclaimer: This post is purely a reflection of my understanding of the concepts. I am learning along the way and may be wrong sometimes. I would recommend reading expert articles and research papers for a first-time understanding._
 
@@ -73,7 +72,7 @@ If we represent any $\phi_m$  as equal to $m$ $\phi$ for a vector $\bar{x_m}$ we
 
 By the way, we do not really desire all semantic information, relative similarity and positions be together represented as one. The positional context does not rely on any semantics. That's why we simply add the additional factor of exp(j $\phi$) as an independent positional encoding vector.
 
-## Extending to Higher Dimensions
+#### Extending to Higher Dimensions
 
 The **Attention is All You Need** paper implements sinusoidal position embeddings as follows:  
 PE @(pos, 2i) = $\sin(pos / 10000^{2i/d})$  
