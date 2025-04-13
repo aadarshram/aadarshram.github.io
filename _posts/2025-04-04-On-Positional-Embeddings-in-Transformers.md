@@ -26,7 +26,7 @@ Okay, now that we know such desirable properties, let's ideate on building up th
 ## Building it up
 
 ### Integer Position Encoding
-A first naive idea that comes to mind for the positional encoding is to encode all the tokens in order with its position in the sequence. For a sequence input of length $L$, this would range from 0 for the first token to $L-1$ for the last one (To match the word embeddings' shape, one extends the same integer value across all the dimensions). However, this faces some challenges.
+A first naive idea that comes to mind for the positional encoding is to encode all the tokens in order with its position in the sequence. For a sequence input of length $$L$$, this would range from 0 for the first token to $$L-1$$ for the last one (To match the word embeddings' shape, one extends the same integer value across all the dimensions). However, this faces some challenges.
 One, the values can easily grow high and overshadow the semantic embeddings. Another, the high values can cause poor gradient flows. You would desire smaller values.
 
 Oh, then just normalize the values by $L$? This allows for the values to be bounded between 0 and 1 and solves the challenges. But, it cannot generalize to different sequence lengths easily since the encoding depends on $L$.
