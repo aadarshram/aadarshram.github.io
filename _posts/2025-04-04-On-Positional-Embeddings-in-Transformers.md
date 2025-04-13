@@ -87,7 +87,20 @@ Let's decipher the other parts.
 - What is 10000? If you plot this encoding as a function of position $pos$ keeping the rest fixed (say, $i = 100, d = 512$) and play around with the base value, you'll notice that 10000 seems a "good" value where the frequency is small enough to cover a range of positions in the sequence without any repetition in the encoding.
 - Moreover, since each dimension has different frequencies it is less likely for a complete encoding to repeat across reasonable position values.
 
-One can verify again if this matches with our desirable properties for a positional encoding. There could be much more to this but I found this explanation "convincing enough" to help me move on with my life. There is a lot more ground to cover, especially the relative position embedding schemes going beyond the sinusoidal encodings (eg, RoPE), but I think that's for another day. Until then!
+One can verify again if this matches with our desirable properties for a positional encoding. There could be much more to this but I found this explanation "convincing enough" to help me move on.
+
+
+### Rotary Positional Encoding
+Once we build an intuition for sinusoidal positional embeddings as rotations in vector space, it becomes (at least in hindsight) natural to extend this idea toward rotary positional encodings (RoPE).
+
+While sinusoidal embeddings capture relative positions well, one might question whether its use of absolute positioning is necessary at all. For instance, the relative positional relationship between tokens at indices 3 and 5 should be equivalent to that between tokens at 1403 and 1405. If so, why encode positions in any way that treats these two pairs differently?
+
+RoPE approaches this differently. Instead of explicitly encoding every token's position as an added vector (as done with sinusoidal embeddings), it rotates the token representations in vector space during self-attention, applying a position-dependent rotation matrix to each token. In simple terms, it modifies the attention computation itself to incorporate relative position directly. The intuition is: what if we use rotations—via complex exponentials like $e^{j\theta}$—within the attention mechanism, rather than adding them externally?
+
+While this avoids the need for absolute embeddings and leads to more elegant relative encoding, it does come with the challenge of computing these rotation matrices efficiently at runtime (though practical implementations often try to optimize this step). RoPE has shown promising improvements in performance of various models across tasks. While there are differences from sinusoidal embeddings, I am still not fully convinced on why one would prefer it. A more concrete analysis of the direct relative context advantage against on-the-fly computation and latency overhead might provide further insight.
+
+## Conclusion
+I hope this post in some sense offers a helpful intuition behind positional encodings. There's more ground to cover but we’ll leave that for another day. Until then!
 
 Note: If you find any mistake or want to suggest your ideas, feel free to reach out!
 
@@ -100,5 +113,5 @@ Note: If you find any mistake or want to suggest your ideas, feel free to reach 
 - https://stackoverflow.com/questions/46452020/sinusoidal-embedding-attention-is-all-you-need
 
 ## Future work
-- Explore relative positional embeddings.
+- More on rotary embeddings. Pretty cool paper [here](https://arxiv.org/abs/2410.06205)
 - Back ideas and intuition with credible reasons and math.
