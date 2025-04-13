@@ -29,7 +29,7 @@ Okay, now that we know such desirable properties, let's ideate on building up th
 A first naive idea that comes to mind for the positional encoding is to encode all the tokens in order with its position in the sequence. For a sequence input of length $$L$$, this would range from 0 for the first token to $$L-1$$ for the last one (To match the word embeddings' shape, one extends the same integer value across all the dimensions). However, this faces some challenges.
 One, the values can easily grow high and overshadow the semantic embeddings. Another, the high values can cause poor gradient flows. You would desire smaller values.
 
-Oh, then just normalize the values by $L$? This allows for the values to be bounded between 0 and 1 and solves the challenges. But, it cannot generalize to different sequence lengths easily since the encoding depends on $L$.
+Oh, then just normalize the values by $$L$$? This allows for the values to be bounded between 0 and 1 and solves the challenges. But, it cannot generalize to different sequence lengths easily since the encoding depends on $$L$$.
 
 ### Binary Position Encoding
 What's a better method?
@@ -39,51 +39,51 @@ This also has gradient flow problems due to the inherent discrete nature of bina
 ### Sinusoidal Positional Embeddings
 
 Okay then, is there any continuous function that shows similar behaviour? Sines and Cosines!
-For an n-bit number represented in binary, the 1st bit (LSB) repeats every 1 step, the 2nd repeats every 2 ( = $2^1$ ), and so on with the $n^{th}$ bit repeating every $2^{n-1}$ steps. A series of sinusoids of decreasing frequency can show similar behaviour as this.
+For an n-bit number represented in binary, the 1st bit (LSB) repeats every 1 step, the 2nd repeats every 2 ( = $$2^1$$ ), and so on with the $$n^{th}$$ bit repeating every $$2^{n-1}$$ steps. A series of sinusoids of decreasing frequency can show similar behaviour as this.
 
 This is fine but let's also look at an alternative way of approaching the idea of using sinusoids. I feel that this helps better picture the embedding vectors in the vectorspace.  
 
-The goal of positional embeddings is to inform the relative positions between any two tokens of interest. Not absolute. So we would expect the self-attention to result in some "($m-n$)" term after the self-attention operation where $m$ and $n$ are positions of the two tokens.  
+The goal of positional embeddings is to inform the relative positions between any two tokens of interest. Not absolute. So we would expect the self-attention to result in some "($$m-n$$)" term after the self-attention operation where $$m$$ and $$n$$ are positions of the two tokens.  
 
 Consider a 2-dimensional case for simplicity.   
 Any vector in 2D space can be described as a complex number:    
-$\bar{x} = |x|exp( j \theta )$
-where $|x|$ denotes its magnitude and $\theta$ its angle from the horizontal axis in an anticlockwise direction. In a sense, the norm $|x|$ represents the value of the vector, while $\theta$ represents its position in the 2D space.  
+$$\bar{x} = |x|exp( j \theta )$$
+where $$|x|$$ denotes its magnitude and $$\theta$$ its angle from the horizontal axis in an anticlockwise direction. In a sense, the norm $$|x|$$ represents the value of the vector, while $$\theta$$ represents its position in the 2D space.  
 
-Consider any two tokens in a sequence input- One at position $m$ in the sequence with a word embedding vector $\bar{x_m}$ and another at $n$ with an embedding vector $\bar{x_n}$.  
+Consider any two tokens in a sequence input- One at position $$m$$ in the sequence with a word embedding vector $$\bar{x_m}$$ and another at $$n$$ with an embedding vector $$\bar{x_n}$$.  
 Expressing these as complex numbers:    
-$\bar{x_m} = | x_m |exp( j \theta_m)$  
-$\bar{x_n} = | x_n |exp( j \theta_n)$  
+$$\bar{x_m} = | x_m |exp( j \theta_m)$$  
+$$\bar{x_n} = | x_n |exp( j \theta_n)$$  
   
-Just as semantic relations between words are formed through relative angle differences, (where $\cos(\theta)$  represents similarity), it makes sense to expect a similar behavior for positions as well.
+Just as semantic relations between words are formed through relative angle differences, (where $$\cos(\theta)$$  represents similarity), it makes sense to expect a similar behavior for positions as well.
 
 **Note:**
 _"Any two randomly chosen vectors in a high dimensional vectorspace will be approximately orthogonal"._ I'll leave the math for later.  
 Remember when we said we'll add the positional encoding to the word embedding vector? A common question that lingers on the mind is why add instead of concatenate.  
 While concatenating makes more sense to establish independence between the two concepts of semantics and position, the above property makes it sufficient to simply add the two vectors. The model is capable enough to learn that they're seperate. This helps us prevent the additional cost of increase in dimensionality when concatenated.  
 
-Back to the current discussion, this property allows us to convice ourselves about the positions in the sequence and the semantic relationships between tokens both expressed through rotations (say $\theta$ and $\phi$) but in different subspaces. _Any two subspaces of a high-dimensional vectorspace will be approximately orthogonal._
+Back to the current discussion, this property allows us to convice ourselves about the positions in the sequence and the semantic relationships between tokens both expressed through rotations (say $$\theta$$ and $$\phi$$) but in different subspaces. _Any two subspaces of a high-dimensional vectorspace will be approximately orthogonal._
 
-Okay, so we agree that positions can be represented through the angle. In 2D, this would be an additional factor of exp(j $\phi$).  
-Now, self-attention involves the dot-product of the query and key vector. Let $\bar{q}$ be a query vector and $\bar{k}$ be a key vector. Then,    
-dot-product = Re{ ( $\bar{q}$ )( $\bar{k}$ )*} = | $q$ || $k$ |  $\cos(\theta_q - \theta_k + \phi_q - \phi_k)$ }   
-where $\theta$ refer to semantic angles and $\phi$ refer to the position angles.  
-If we represent any $\phi_m$  as equal to $m$ $\phi$ for a vector $\bar{x_m}$ we notice the relative position ( $m-n$ ) term in the dot-product as we desired. Also, the representation in terms of the complex exponential  (exp(j $\theta$ ) = ($\cos(\theta)$ , $\sin(\theta)$ ) motivates the alternating $\sin$ and $\cos$ terms that we find in such positional encodings atleast in 2D.
+Okay, so we agree that positions can be represented through the angle. In 2D, this would be an additional factor of exp(j $$\phi$$).  
+Now, self-attention involves the dot-product of the query and key vector. Let $$\bar{q}$$ be a query vector and $$\bar{k}$$ be a key vector. Then,    
+dot-product = Re{ ( $$\bar{q}$$ )( $$\bar{k}$$ )*} = | $$q$$ || $$k$$ |  $$\cos(\theta_q - \theta_k + \phi_q - \phi_k)$$ }   
+where $$\theta$$ refer to semantic angles and $$\phi$$ refer to the position angles.  
+If we represent any $$\phi_m$$  as equal to $$m$$ $$\phi$$ for a vector $$\bar{x_m}$$ we notice the relative position ( $$m-n$$ ) term in the dot-product as we desired. Also, the representation in terms of the complex exponential  (exp(j $$\theta$$ ) = ($$\cos(\theta)$$ , $$\sin(\theta)$$ ) motivates the alternating $$\sin$$ and $$\cos$$ terms that we find in such positional encodings atleast in 2D.
 
-By the way, we do not really desire all semantic information, relative similarity and positions be together represented as one. The positional context does not rely on any semantics. That's why we simply add the additional factor of exp(j $\phi$) as an independent positional encoding vector.
+By the way, we do not really desire all semantic information, relative similarity and positions be together represented as one. The positional context does not rely on any semantics. That's why we simply add the additional factor of exp(j $$\phi$$) as an independent positional encoding vector.
 
 #### Extending to Higher Dimensions
 
 The **Attention is All You Need** paper implements sinusoidal position embeddings as follows:  
-PE @(pos, 2i) = $\sin(pos / 10000^{2i/d})$  
-PE @(pos, 2i+1) = $\cos(pos / 10000^{2i/d})$
+PE @(pos, 2i) = $$\sin(pos / 10000^{2i/d})$$  
+PE @(pos, 2i+1) = $$\cos(pos / 10000^{2i/d})$$
 
-This fits for our 2D case (i=1). But why alternating $\cos$ and $\sin$ repeated across the dimension? I haven't fully understood this yet, but I heard an explanation related to operating on pairwise subspaces and each pair as we saw earlier has an alternating $\cos$ and $\sin$. If you've figured this out, please do share!
+This fits for our 2D case (i=1). But why alternating $$\cos$$ and $$\sin$$ repeated across the dimension? I haven't fully understood this yet, but I heard an explanation related to operating on pairwise subspaces and each pair as we saw earlier has an alternating $$\cos$$ and $$\sin$$. If you've figured this out, please do share!
   
 Let's decipher the other parts.
-- The arguement is directly proportional to the position $pos$. Makes sense. Recall that we ideated on representing $\phi_{m}$ as $m \phi$.
+- The arguement is directly proportional to the position $$pos$$. Makes sense. Recall that we ideated on representing $$\phi_{m}$$ as $$m \phi$$.
 - The frequency of the sinusoid decreases down the dimensions. Matches with our intuition about arriving at sinusoids from binary encoding with higher bits varying at lower frequencies.
-- What is 10000? If you plot this encoding as a function of position $pos$ keeping the rest fixed (say, $i = 100, d = 512$) and play around with the base value, you'll notice that 10000 seems a "good" value where the frequency is small enough to cover a range of positions in the sequence without any repetition in the encoding.
+- What is 10000? If you plot this encoding as a function of position $$pos$$ keeping the rest fixed (say, $$i = 100, d = 512$$) and play around with the base value, you'll notice that 10000 seems a "good" value where the frequency is small enough to cover a range of positions in the sequence without any repetition in the encoding.
 - Moreover, since each dimension has different frequencies it is less likely for a complete encoding to repeat across reasonable position values.
 
 One can verify again if this matches with our desirable properties for a positional encoding. There could be much more to this but I found this explanation "convincing enough" to help me move on.
@@ -94,7 +94,7 @@ Once we build an intuition for sinusoidal positional embeddings as rotations in 
 
 While sinusoidal embeddings capture relative positions well, one might question whether its use of absolute positioning is necessary at all. For instance, the relative positional relationship between tokens at indices 3 and 5 should be equivalent to that between tokens at 1403 and 1405. If so, why encode positions in any way that treats these two pairs differently?
 
-RoPE approaches this differently. Instead of explicitly encoding every token's position as an added vector (as done with sinusoidal embeddings), it rotates the token representations in vector space during self-attention, applying a position-dependent rotation matrix to each token. In simple terms, it modifies the attention computation itself to incorporate relative position directly. The intuition is: what if we use rotations—via complex exponentials like $e^{j\theta}$—within the attention mechanism, rather than adding them externally?
+RoPE approaches this differently. Instead of explicitly encoding every token's position as an added vector (as done with sinusoidal embeddings), it rotates the token representations in vector space during self-attention, applying a position-dependent rotation matrix to each token. In simple terms, it modifies the attention computation itself to incorporate relative position directly. The intuition is: what if we use rotations—via complex exponentials like $$e^{j\theta}$$—within the attention mechanism, rather than adding them externally?
 
 While this avoids the need for absolute embeddings and leads to more elegant relative encoding, it does come with the challenge of computing these rotation matrices efficiently at runtime (though practical implementations often try to optimize this step). RoPE has shown promising improvements in performance of various models across tasks. While there are differences from sinusoidal embeddings, I am still not fully convinced on why one would prefer it. A more concrete analysis of the direct relative context advantage against on-the-fly computation and latency overhead might provide further insight.
 
