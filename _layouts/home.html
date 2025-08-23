@@ -10,40 +10,29 @@ layout: page
 <ul class="posts-list list-unstyled" role="list">
   {% for post in sorted_posts %}
   <li class="post-preview">
-    <article class="post-article">
-      {% capture thumbnail %}
-        {% if post.thumbnail-img %}
-          {{ post.thumbnail-img }}
-        {% elsif post.cover-img %}
-          {% if post.cover-img.first %}
-            {{ post.cover-img[0].first.first }}
-          {% else %}
-            {{ post.cover-img }}
-          {% endif %}
+  <article class="post-article">
+    {% capture thumbnail %}
+      {% if post.thumbnail-img %}
+        {{ post.thumbnail-img }}
+      {% elsif post.cover-img %}
+        {% if post.cover-img.first %}
+          {{ post.cover-img[0].first.first }}
         {% else %}
+          {{ post.cover-img }}
         {% endif %}
-      {% endcapture %}
-      {% assign thumbnail = thumbnail | strip %}
+      {% else %}
+      {% endif %}
+    {% endcapture %}
+    {% assign thumbnail = thumbnail | strip %}
 
-      <div class="post-content">
-        {% if thumbnail != "" %}
-        <div class="post-thumbnail">
-          <a href="{{ post.url | absolute_url }}" aria-label="Thumbnail">
-            <img src="{{ thumbnail | absolute_url }}" alt="Post thumbnail">
-          </a>
-        </div>
-        {% endif %}
+    <div class="post-cover" {% if thumbnail != "" %}style="background-image: url('{{ thumbnail | absolute_url }}');"{% endif %}>
+      <a href="{{ post.url | absolute_url }}">
+        <div class="overlay">
+          <h2 class="post-title">{{ post.title | strip_html }}</h2>
 
-        <div class="post-excerpt">
-          <a href="{{ post.url | absolute_url }}">
-            <h2 class="post-title">{{ post.title | strip_html }}</h2>
-
-            {% if post.subtitle %}
-              <h3 class="post-subtitle">
-              {{ post.subtitle | strip_html }}
-              </h3>
-            {% endif %}
-          </a>
+          {% if post.subtitle %}
+            <h3 class="post-subtitle">{{ post.subtitle | strip_html }}</h3>
+          {% endif %}
 
           {% if post.author %}
             <span>By <strong>{{ post.author | strip_html }}</strong></span>
@@ -59,12 +48,13 @@ layout: page
             {{ post.excerpt | strip_html | truncatewords: excerpt_length }}
             {% assign excerpt_word_count = post.excerpt | number_of_words %}
             {% if post.content != post.excerpt or excerpt_word_count > excerpt_length %}
-              <a href="{{ post.url | absolute_url }}" class="post-read-more">[Read&nbsp;More]</a>
+              <span class="post-read-more">[Read&nbsp;More]</span>
             {% endif %}
           </div>
           {% endunless %}
         </div>
-      </div>
+      </a>
+    </div>
 
       {% if site.feed_show_tags != false and post.tags.size > 0 %}
       <div class="blog-tags">
