@@ -17,7 +17,7 @@
 {% endif %}
 
 <header class="header-section {% if page.cover-img %}has-img{% endif %}">
-<div class="intro-header {% if page.cover-img %} big-img {% endif %}">
+<div class="intro-header {% if page.cover-img %} big-img {% endif %}{% if page.landing-hero %} landing-hero{% endif %}" {% if page.cover-position %}style="background-position: {{ page.cover-position }};"{% endif %}>
   {% if page.cover-img or page.title %}
   <div class="container-md">
     <div class="row">
@@ -31,6 +31,43 @@
             {% else %}
               <h2 class="{{ include.type }}-subheading">{{ page.subtitle | strip_html }}</h2>
             {% endif %}
+          {% endif %}
+
+          {% if page.show-cover-social-links and site.social-network-links %}
+            <div class="cover-social-links" aria-label="Social links">
+              {% if site.social-network-links.github %}
+                <a href="https://github.com/{{ site.social-network-links.github }}" title="GitHub" aria-label="GitHub">
+                  <span class="fa-stack fa-lg" aria-hidden="true">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              {% endif %}
+              {% if site.social-network-links.linkedin %}
+                <a href="https://linkedin.com/in/{{ site.social-network-links.linkedin }}" title="LinkedIn" aria-label="LinkedIn">
+                  <span class="fa-stack fa-lg" aria-hidden="true">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-linkedin-in fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              {% endif %}
+              {% if site.social-network-links.twitter %}
+                <a href="https://twitter.com/{{ site.social-network-links.twitter }}" title="X (Twitter)" aria-label="X (Twitter)">
+                  <span class="fa-stack fa-lg" aria-hidden="true">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-x-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              {% endif %}
+              {% if site.social-network-links.email %}
+                <a href="mailto:{{ site.social-network-links.email }}" title="Email" aria-label="Email">
+                  <span class="fa-stack fa-lg" aria-hidden="true">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              {% endif %}
+            </div>
           {% endif %}
           
           {% if include.type == "post" %} 

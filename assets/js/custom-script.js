@@ -27,7 +27,43 @@ window.onload = function() {
 document.addEventListener("DOMContentLoaded", function () {
   const toggleSwitch = document.querySelector(".switch input");
 
-  toggleSwitch.addEventListener("change", function() {
-    toggleDarkMode();
+  if (toggleSwitch) {
+    toggleSwitch.addEventListener("change", function() {
+      toggleDarkMode();
+    });
+  }
+
+  const landingHero = document.querySelector(".intro-header.big-img.landing-hero");
+  if (landingHero) {
+    const syncLandingHeroState = () => {
+      landingHero.classList.toggle("is-scrolled", window.scrollY > 24);
+    };
+
+    syncLandingHeroState();
+    window.addEventListener("scroll", syncLandingHeroState, { passive: true });
+  }
+
+  const filterBar = document.querySelector(".projects-filter-bar");
+  if (!filterBar) {
+    return;
+  }
+
+  const filterButtons = Array.from(filterBar.querySelectorAll(".projects-filter-btn"));
+  const cards = Array.from(document.querySelectorAll(".project-card"));
+
+  const applyFilter = (filterValue) => {
+    filterButtons.forEach((button) => {
+      button.classList.toggle("is-active", button.dataset.filter === filterValue);
+    });
+
+    cards.forEach((card) => {
+      const categories = (card.dataset.categories || "").split(/\s+/).filter(Boolean);
+      const showCard = filterValue === "all" || categories.includes(filterValue);
+      card.classList.toggle("is-hidden", !showCard);
+    });
+  };
+
+  filterButtons.forEach((button) => {
+    button.addEventListener("click", () => applyFilter(button.dataset.filter));
   });
 });
