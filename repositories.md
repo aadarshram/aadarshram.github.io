@@ -2,7 +2,7 @@
 layout: page
 permalink: /projects/
 title: Projects
-subtitle: Selected work, prototypes, and reports
+subtitle: Selected projects I've worked on.
 description: Selected projects
 nav: true
 nav_order: 3
@@ -39,7 +39,7 @@ projects:
   - title: LightSoundSync (Course Project)
     date: 2025
     categories: [hardware]
-    image: /assets/img/thumb.png
+    image: /assets/img/analog.jpeg
     description: Explored synchronizing light with sound by changing the brightness of an LED with sound level using a composite analog system.
     github: "https://github.com/aadarshram/LightSoundSync"
   - title: S.A.M.V.I.D
@@ -51,7 +51,7 @@ projects:
   - title: Microprocessors Lab (Course Project)
     date: 2024
     categories: [hardware]
-    image: /assets/img/thumb.png
+    image: /assets/img/mup.jpeg
     description: Designed and implemented digital systems using Verilog (FPGA) and Assembly (AVR & ARM). Built combinational/sequential circuits, hardware interfacing, and interrupt handling across different architectures.
     github: "https://github.com/aadarshram/MicroProcessorsLab_EE2016"
   - title: ConsumerWise
@@ -76,12 +76,6 @@ projects:
     report: "https://github.com/aadarshram/AWS-Image-Classification-Model/blob/master/README.md"
     github: "https://github.com/aadarshram/AWS-Image-Classification-Model"
 ---
-
-<div class="projects-intro">
-  <p>
-    Selected projects I've worked on. 
-  </p>
-</div>
 
 <div class="projects-filter-bar" role="tablist" aria-label="Project categories">
   <button type="button" class="projects-filter-btn is-active" data-filter="all">All</button>
