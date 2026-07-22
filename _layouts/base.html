@@ -24,10 +24,23 @@ common-js:
 <!-- Beautiful Jekyll 6.0.1 | Copyright Dean Attali 2023 -->
 {% include head.html %}
 
-<body>
+<body class="no-top-nav has-landing-hero">
+  <script>
+    (function () {
+      try {
+        if (window.matchMedia("(min-width: 992px)").matches) {
+          document.documentElement.classList.add("preload-landing-docked");
+          document.body.classList.add("landing-docked");
+        }
+      } catch (e) {}
+    })();
+  </script>
+
   {% include gtm_body.html %}
 
-  {% include nav.html %}
+  <div class="site-nav-shell site-nav-shell--landing-mobile" hidden></div>
+  {% include site-hero.html %}
+  {% include search.html %}
 
   {{ content }}
 

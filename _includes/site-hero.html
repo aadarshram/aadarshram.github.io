@@ -1,0 +1,64 @@
+{% assign hero_img = site.site-hero-img | default: "/assets/img/disney_star_wars.webp" %}
+{% assign hero_position = site.site-hero-position | default: "center 22%" %}
+{% assign hero_subtitle = site.site-hero-subtitle | default: "Building robots to take the work out of 'work-life balance'" %}
+
+<header class="header-section has-img site-hero-section">
+  <div
+    class="intro-header big-img landing-hero"
+    style="background-image: url('{{ hero_img | relative_url }}'); background-position: {{ hero_position }};"
+  >
+    <div class="container-md">
+      <div class="row">
+        <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
+          <div class="hero-identity">
+            <div class="page-heading">
+              <h1>{{ site.title | strip_html }}</h1>
+              <hr class="small">
+              <span class="page-subheading">{{ hero_subtitle | strip_html }}</span>
+
+              {% if site.social-network-links %}
+                <div class="cover-social-links" aria-label="Social links">
+                  {% if site.social-network-links.github %}
+                    <a href="https://github.com/{{ site.social-network-links.github }}" title="GitHub" aria-label="GitHub">
+                      <span class="fa-stack fa-lg" aria-hidden="true">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                      </span>
+                    </a>
+                  {% endif %}
+                  {% if site.social-network-links.linkedin %}
+                    <a href="https://linkedin.com/in/{{ site.social-network-links.linkedin }}" title="LinkedIn" aria-label="LinkedIn">
+                      <span class="fa-stack fa-lg" aria-hidden="true">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fab fa-linkedin-in fa-stack-1x fa-inverse"></i>
+                      </span>
+                    </a>
+                  {% endif %}
+                  {% if site.social-network-links.twitter %}
+                    <a href="https://twitter.com/{{ site.social-network-links.twitter }}" title="X (Twitter)" aria-label="X (Twitter)">
+                      <span class="fa-stack fa-lg" aria-hidden="true">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fab fa-x-twitter fa-stack-1x fa-inverse"></i>
+                      </span>
+                    </a>
+                  {% endif %}
+                  {% if site.social-network-links.email %}
+                    <a href="mailto:{{ site.social-network-links.email }}" title="Email" aria-label="Email">
+                      <span class="fa-stack fa-lg" aria-hidden="true">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                      </span>
+                    </a>
+                  {% endif %}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% include lightsaber.html %}
+    {% include site-nav.html %}
+  </div>
+</header>

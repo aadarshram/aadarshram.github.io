@@ -10,6 +10,9 @@ let BeautifulJekyllJS = {
 
     // Shorten the navbar after scrolling a little bit down
     $(window).scroll(function() {
+        if (!$(".navbar").length) {
+          return;
+        }
         if ($(".navbar").offset().top > 50) {
             $(".navbar").addClass("top-nav-short");
         } else {
@@ -32,6 +35,9 @@ let BeautifulJekyllJS = {
   },
 
   initNavbar : function() {
+    if (!$(".navbar").length) {
+      return;
+    }
     // Set the navbar-dark/light class based on its background color
     const rgb = $('.navbar').css("background-color").replace(/[^\d,]/g,'').split(",");
     const brightness = Math.round(( // http://www.w3.org/TR/AERT#color-contrast
@@ -71,7 +77,7 @@ let BeautifulJekyllJS = {
 
         setTimeout(function(){
           const img = $("<div></div>").addClass("big-img-transition").css("background-image", 'url(' + src + ')');
-          $(".intro-header.big-img").prepend(img);
+          $("header.header-section:not(.site-hero-section) .intro-header.big-img").prepend(img);
           setTimeout(function(){ img.css("opacity", "1"); }, 50);
 
           // after the animation of fading in the new image is done, prefetch the next one
@@ -104,11 +110,11 @@ let BeautifulJekyllJS = {
   },
 
   setImg : function(src, desc) {
-    $(".intro-header.big-img").css("background-image", 'url(' + src + ')');
+    $("header.header-section:not(.site-hero-section) .intro-header.big-img").css("background-image", 'url(' + src + ')');
     if (typeof desc !== typeof undefined && desc !== false) {
-      $(".img-desc").text(desc).show();
+      $("header.header-section:not(.site-hero-section) .img-desc").text(desc).show();
     } else {
-      $(".img-desc").hide();
+      $("header.header-section:not(.site-hero-section) .img-desc").hide();
     }
   },
 
@@ -117,7 +123,7 @@ let BeautifulJekyllJS = {
       return;
     }
 
-    $("#nav-search-link").click(function(e) {
+    $(document).on("click", ".nav-search-link", function(e) {
       e.preventDefault();
       $("#beautifuljekyll-search-overlay").show();
       $("#nav-search-input").focus().select();

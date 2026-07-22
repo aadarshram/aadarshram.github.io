@@ -15,6 +15,11 @@ title: Aadarsh Ram
 # Your name to show in the footer
 author: Aadarsh Ramachandran
 
+# Site-wide dockable hero (shared across all pages)
+site-hero-img: "/assets/img/disney_star_wars.webp"
+site-hero-position: "center 22%"
+site-hero-subtitle: "Building robots to take the work out of 'work-life balance'"
+
 ###############################################
 # --- List of links in the navigation bar --- #
 ###############################################

@@ -17,6 +17,20 @@ full-width: true
 # - github: GitHub repo link
 
 projects:
+  - title: Overtone (Course Project)
+    date: 2026
+    categories: [miscellaneous]
+    image: /assets/img/overtone.webp
+    description: Built a complete OFDM transceiver with differential QPSK (DQPSK) for indoor acoustic communication. Achieved a ~7.2 kbps bit rate at ~1.3% BER on commodity laptop hardware.
+    report: "https://github.com/aadarshram/overtone/blob/main/docs/report.pdf"
+    github: "https://github.com/aadarshram/overtone"
+  - title: SPCTOM (Course Project)
+    date: 2026
+    categories: [robotics-control]
+    image: /assets/img/spctom.jpg
+    description: Implemented a smooth and path-constrained time optimal trajectory planner with both torque and torque rate constraints for industrial robots.
+    report: "https://github.com/aadarshram/SPCTOM/blob/main/docs/spctom_report.pdf"
+    github: "https://github.com/aadarshram/SPCTOM"
   - title: Swarm-rescue
     date: 2026
     categories: [robotics-control]
