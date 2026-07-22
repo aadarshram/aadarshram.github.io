@@ -27,9 +27,13 @@ function syncThemeSwitchUI() {
   });
 }
 
-function getStoredLandingDocked() {
-  // Pages always open with the hero docked on desktop.
-  return true;
+function isHomePage() {
+  return document.body.classList.contains("is-home");
+}
+
+function getInitialLandingDocked() {
+  // Home stays expanded on first land; all other pages open docked.
+  return !isHomePage();
 }
 
 function setStoredLandingDocked(docked) {
@@ -291,7 +295,7 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     placeSiteNav();
-    applyDockedState(getStoredLandingDocked(), {
+    applyDockedState(getInitialLandingDocked(), {
       persist: false,
       scrollTop: false,
       instant: true
@@ -368,7 +372,11 @@ document.addEventListener("DOMContentLoaded", function () {
       desktopMq.addEventListener("change", () => {
         placeSiteNav();
         if (desktopMq.matches) {
-          applyDockedState(true, { persist: false, scrollTop: false, instant: true });
+          applyDockedState(getInitialLandingDocked(), {
+            persist: false,
+            scrollTop: false,
+            instant: true
+          });
         } else {
           applyDockedState(false, { persist: false, scrollTop: false });
         }
@@ -377,7 +385,11 @@ document.addEventListener("DOMContentLoaded", function () {
       desktopMq.addListener(() => {
         placeSiteNav();
         if (desktopMq.matches) {
-          applyDockedState(true, { persist: false, scrollTop: false, instant: true });
+          applyDockedState(getInitialLandingDocked(), {
+            persist: false,
+            scrollTop: false,
+            instant: true
+          });
         } else {
           applyDockedState(false, { persist: false, scrollTop: false });
         }

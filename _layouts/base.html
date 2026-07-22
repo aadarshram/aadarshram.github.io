@@ -24,11 +24,15 @@ common-js:
 <!-- Beautiful Jekyll 6.0.1 | Copyright Dean Attali 2023 -->
 {% include head.html %}
 
-<body class="no-top-nav has-landing-hero">
+<body class="no-top-nav has-landing-hero{% if page.url == '/' %} is-home{% endif %}">
   <script>
     (function () {
       try {
-        if (window.matchMedia("(min-width: 992px)").matches) {
+        // Home / first landing stays full-bleed; other pages preload docked.
+        if (
+          window.matchMedia("(min-width: 992px)").matches &&
+          !document.body.classList.contains("is-home")
+        ) {
           document.documentElement.classList.add("preload-landing-docked");
           document.body.classList.add("landing-docked");
         }
