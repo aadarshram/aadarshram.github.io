@@ -25,6 +25,7 @@ common-js:
 {% include head.html %}
 
 <body class="no-top-nav has-landing-hero{% if page.url == '/' %} is-home{% endif %}">
+  {% comment %} Temporarily disabled sidebar preload
   <script>
     (function () {
       try {
@@ -39,11 +40,16 @@ common-js:
       } catch (e) {}
     })();
   </script>
+  {% endcomment %}
 
   {% include gtm_body.html %}
 
-  <div class="site-nav-shell site-nav-shell--landing-mobile" hidden></div>
-  {% include site-hero.html %}
+  <div class="landing-first-screen">
+    <div class="site-nav-shell">
+      {% include site-nav.html %}
+    </div>
+    {% include site-hero.html %}
+  </div>
   {% include search.html %}
 
   {{ content }}

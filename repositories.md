@@ -41,8 +41,8 @@ projects:
     date: 2024
     categories: [robotics-control]
     image: /assets/img/agnirath.jpg
-    description: Race strategy for solar car racing at World Solar Challenge 2025, Australia. Built constrained optimization models to optimize time and energy efficiency. (Report compiled by teammates)
-    report: "/assets/docs/agnirath_report.pdf"
+    description: Race strategy for solar car racing at World Solar Challenge 2025, Australia. Built constrained optimization models to optimize time and energy efficiency. 
+    report: "/2026-08-22-On-Race-Strategy-for-the-World-Solar-Challenge/"
   - title: LeX-O
     date: 2025
     categories: [robotics-control]

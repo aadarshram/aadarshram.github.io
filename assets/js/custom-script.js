@@ -27,6 +27,18 @@ function syncThemeSwitchUI() {
   });
 }
 
+function syncSiteNavHeight() {
+  const shell = document.querySelector(".site-nav-shell");
+  if (!shell) {
+    return;
+  }
+  document.documentElement.style.setProperty(
+    "--site-nav-height",
+    `${shell.offsetHeight}px`
+  );
+}
+
+/*
 function isHomePage() {
   return document.body.classList.contains("is-home");
 }
@@ -41,9 +53,11 @@ function setStoredLandingDocked(docked) {
     localStorage.setItem("landing-docked", String(docked));
   } catch (e) {}
 }
+*/
 
 window.onload = function() {
   syncThemeSwitchUI();
+  syncSiteNavHeight();
 };
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -57,6 +71,14 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
   });
+
+  syncThemeSwitchUI();
+  syncSiteNavHeight();
+  window.addEventListener("resize", syncSiteNavHeight);
+
+  /*
+  Temporarily disabled landing interaction (lightsaber dock / swipe / wheel).
+  Restore by uncommenting this block.
 
   const landingHero = document.querySelector(".intro-header.big-img.landing-hero");
   if (landingHero) {
@@ -93,7 +115,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const saberIdleX = () => window.innerWidth * SABER_IDLE_RATIO;
 
-    /* Instant left-mode swap when edge == idle X so attach/detach never eases sideways */
+    // Instant left-mode swap when edge == idle X so attach/detach never eases sideways
     const setSaberRiding = (riding) => {
       if (!lightsaber) {
         return;
@@ -363,7 +385,6 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!desktopMq.matches) {
         applyDockedState(false, { persist: false, scrollTop: false });
       } else {
-        // Keep in-session expand/collapse; don't force re-dock on resize
         applyDockedState(docked, { persist: false, scrollTop: false, instant: true });
       }
     });
@@ -396,6 +417,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
   }
+  */
 
   const filterBar = document.querySelector(".projects-filter-bar");
   if (!filterBar) {
