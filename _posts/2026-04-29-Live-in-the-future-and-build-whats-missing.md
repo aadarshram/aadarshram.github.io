@@ -4,7 +4,8 @@ title: Live in the future and build whats missing.
 subtitle: Notes from Y Combinator's Startup School India
 cover-img: /assets/img/yc2.jpeg
 share-img: /assets/img/yc2.jpeg
-tags: Startup, AI, Robotics
+tags:
+  - Notes
 author: Aadarsh Ramachandran
 readtime: true
 ---

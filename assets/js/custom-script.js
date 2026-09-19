@@ -1,30 +1,55 @@
-// Function to toggle dark/light mode
-function toggleDarkMode() {
-  const body = document.body;
+function fillCardExcerpt(container, text, url, wordLimit) {
+  const limit = wordLimit || 15;
+  const trimmed = (text || "").trim();
+  if (!trimmed) {
+    container.textContent = "No description.";
+    return;
+  }
 
-  body.classList.toggle("dark-mode");
+  const words = trimmed.split(/\s+/);
+  if (words.length <= limit) {
+    container.textContent = trimmed;
+    return;
+  }
 
-  const newMode = body.classList.contains("dark-mode") ? "dark" : "light";
-  localStorage.setItem("theme", newMode);
+  container.textContent = words.slice(0, limit).join(" ") + "... ";
+  const more = document.createElement("a");
+  more.href = url;
+  more.className = "post-read-more";
+  more.target = "_blank";
+  more.rel = "noopener";
+  more.textContent = "[Read More]";
+  container.appendChild(more);
+}
 
+function systemPrefersDark() {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches;
+}
+
+function resolveTheme() {
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "dark" || savedTheme === "light") {
+    return savedTheme;
+  }
+  return systemPrefersDark() ? "dark" : "light";
+}
+
+function applyTheme(mode) {
+  const isDark = mode === "dark";
+  document.documentElement.classList.toggle("dark-mode", isDark);
+  document.body.classList.toggle("dark-mode", isDark);
+  document.documentElement.style.colorScheme = isDark ? "dark" : "light";
+  const themeColor = document.querySelector('meta[name="theme-color"]');
+  if (themeColor) {
+    themeColor.setAttribute("content", isDark ? "#121212" : "#faf9f6");
+  }
   document.querySelectorAll(".switch input").forEach((input) => {
-    input.checked = newMode === "dark";
+    input.checked = isDark;
   });
 }
 
 function syncThemeSwitchUI() {
-  const savedTheme = localStorage.getItem("theme");
-  const isDark = savedTheme === "dark";
-
-  if (isDark) {
-    document.body.classList.add("dark-mode");
-  } else {
-    document.body.classList.remove("dark-mode");
-  }
-
-  document.querySelectorAll(".switch input").forEach((input) => {
-    input.checked = isDark;
-  });
+  applyTheme(resolveTheme());
 }
 
 function syncSiteNavHeight() {
@@ -38,13 +63,14 @@ function syncSiteNavHeight() {
   );
 }
 
+
+
 /*
 function isHomePage() {
   return document.body.classList.contains("is-home");
 }
 
 function getInitialLandingDocked() {
-  // Home stays expanded on first land; all other pages open docked.
   return !isHomePage();
 }
 
@@ -64,13 +90,23 @@ document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll(".switch input").forEach((toggleSwitch) => {
     toggleSwitch.addEventListener("change", function() {
       const wantDark = this.checked;
-      document.body.classList.toggle("dark-mode", wantDark);
       localStorage.setItem("theme", wantDark ? "dark" : "light");
-      document.querySelectorAll(".switch input").forEach((input) => {
-        input.checked = wantDark;
-      });
+      applyTheme(wantDark ? "dark" : "light");
     });
   });
+
+  const themeQuery = window.matchMedia("(prefers-color-scheme: dark)");
+  const onSystemThemeChange = (event) => {
+    if (localStorage.getItem("theme")) {
+      return;
+    }
+    applyTheme(event.matches ? "dark" : "light");
+  };
+  if (themeQuery.addEventListener) {
+    themeQuery.addEventListener("change", onSystemThemeChange);
+  } else if (themeQuery.addListener) {
+    themeQuery.addListener(onSystemThemeChange);
+  }
 
   syncThemeSwitchUI();
   syncSiteNavHeight();
@@ -419,27 +455,162 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   */
 
-  const filterBar = document.querySelector(".projects-filter-bar");
-  if (!filterBar) {
-    return;
-  }
+  const initContentFilters = (root) => {
+    const itemSelector = root.dataset.filterItem;
+    if (!itemSelector) {
+      return;
+    }
 
-  const filterButtons = Array.from(filterBar.querySelectorAll(".projects-filter-btn"));
-  const cards = Array.from(document.querySelectorAll(".project-card"));
+    const items = Array.from(document.querySelectorAll(itemSelector));
+    const emptyState = root.parentElement
+      ? root.parentElement.querySelector(".content-filter-empty")
+      : null;
+    const pager = root.parentElement
+      ? root.parentElement.querySelector("[data-content-pager]")
+      : null;
+    const pageSize = parseInt(root.dataset.pageSize, 10) || 0;
+    const groups = Array.from(root.querySelectorAll("[data-filter-group]"));
+    const toggle = root.querySelector(".content-filter-toggle");
+    const panel = root.querySelector(".content-filter-panel");
+    const selected = {};
+    let currentPage = 1;
 
-  const applyFilter = (filterValue) => {
-    filterButtons.forEach((button) => {
-      button.classList.toggle("is-active", button.dataset.filter === filterValue);
+    groups.forEach((group) => {
+      selected[group.dataset.filterGroup] = "all";
     });
 
-    cards.forEach((card) => {
-      const categories = (card.dataset.categories || "").split(/\s+/).filter(Boolean);
-      const showCard = filterValue === "all" || categories.includes(filterValue);
-      card.classList.toggle("is-hidden", !showCard);
+    const setPanelOpen = (open) => {
+      if (!panel || !toggle) {
+        return;
+      }
+      panel.hidden = !open;
+      toggle.setAttribute("aria-expanded", String(open));
+      root.classList.toggle("is-open", open);
+    };
+
+    const syncToggleState = () => {
+      if (!toggle) {
+        return;
+      }
+      const activeCount = Object.values(selected).filter((value) => value !== "all").length;
+      toggle.classList.toggle("is-active", activeCount > 0);
+    };
+
+    const matchingItems = () => {
+      return items.filter((item) => {
+        return groups.every((group) => {
+          const key = group.dataset.filterGroup;
+          const value = selected[key];
+          if (value === "all") {
+            return true;
+          }
+          const itemValues = (item.dataset[key] || "").split(/\s+/).filter(Boolean);
+          return itemValues.includes(value);
+        });
+      });
+    };
+
+    const renderPager = (totalPages) => {
+      if (!pager) {
+        return;
+      }
+
+      pager.innerHTML = "";
+      pager.hidden = !pageSize || totalPages <= 1;
+      if (pager.hidden) {
+        return;
+      }
+
+      const addButton = (label, page, options) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "content-pager-btn";
+        button.textContent = label;
+        if (options.current) {
+          button.classList.add("is-active");
+          button.setAttribute("aria-current", "page");
+        }
+        if (options.disabled) {
+          button.disabled = true;
+        }
+        button.addEventListener("click", () => {
+          if (options.disabled || page === currentPage) {
+            return;
+          }
+          currentPage = page;
+          applyFilters({ resetPage: false });
+          root.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+        pager.appendChild(button);
+      };
+
+      addButton("Previous", currentPage - 1, { disabled: currentPage <= 1 });
+      for (let page = 1; page <= totalPages; page += 1) {
+        addButton(String(page), page, { current: page === currentPage });
+      }
+      addButton("Next", currentPage + 1, { disabled: currentPage >= totalPages });
+    };
+
+    const applyFilters = (options) => {
+      const resetPage = !options || options.resetPage !== false;
+      const matched = matchingItems();
+      const totalPages = pageSize ? Math.max(1, Math.ceil(matched.length / pageSize)) : 1;
+
+      if (resetPage) {
+        currentPage = 1;
+      }
+      currentPage = Math.min(currentPage, totalPages);
+
+      items.forEach((item) => {
+        item.classList.add("is-hidden");
+      });
+
+      matched.forEach((item, index) => {
+        const onPage = !pageSize || Math.floor(index / pageSize) + 1 === currentPage;
+        item.classList.toggle("is-hidden", !onPage);
+      });
+
+      if (emptyState) {
+        emptyState.hidden = matched.length !== 0;
+      }
+      renderPager(matched.length ? totalPages : 0);
+      syncToggleState();
+    };
+
+    if (toggle && panel) {
+      toggle.addEventListener("click", (event) => {
+        event.stopPropagation();
+        setPanelOpen(panel.hidden);
+      });
+
+      document.addEventListener("click", (event) => {
+        if (!root.contains(event.target)) {
+          setPanelOpen(false);
+        }
+      });
+
+      document.addEventListener("keyup", (event) => {
+        if (event.key === "Escape") {
+          setPanelOpen(false);
+        }
+      });
+    }
+
+    groups.forEach((group) => {
+      const buttons = Array.from(group.querySelectorAll(".projects-filter-btn"));
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          selected[group.dataset.filterGroup] = button.dataset.filter;
+          buttons.forEach((peer) => {
+            peer.classList.toggle("is-active", peer === button);
+          });
+          applyFilters();
+        });
+      });
     });
+
+    applyFilters();
   };
 
-  filterButtons.forEach((button) => {
-    button.addEventListener("click", () => applyFilter(button.dataset.filter));
-  });
+  document.querySelectorAll("[data-filter-root]").forEach(initContentFilters);
 });

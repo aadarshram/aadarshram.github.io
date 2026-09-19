@@ -4,7 +4,9 @@ title: 'On Gift Kitting, Chaos, and Why Build Robots'
 subtitle: A messy task, a long day, and a clearer sense of things
 cover-img: /assets/img/gift_kitting_ai.png
 share-img: /assets/img/gift_kitting_ai.png
-tags: AI, Robotics, Random
+tags:
+  - Robotics
+  - Notes
 author: Aadarsh Ramachandran
 readtime: true
 ---

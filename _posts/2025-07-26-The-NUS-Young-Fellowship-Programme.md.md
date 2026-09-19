@@ -5,7 +5,8 @@ subtitle: A Week in Singapore and Learnings on AI, Research, and Life
 cover-img: /assets/img/nus_cover.jpeg
 thumbnail-img: /assets/img/nus_cover.jpeg
 share-img: /assets/img/nus_cover.jpeg
-tags: AI, Research, Travel
+tags:
+  - Notes
 author: Aadarsh Ramachandran
 readtime: true
 ---

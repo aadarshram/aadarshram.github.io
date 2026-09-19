@@ -125,18 +125,18 @@ let BeautifulJekyllJS = {
 
     $(document).on("click", ".nav-search-link", function(e) {
       e.preventDefault();
-      $("#beautifuljekyll-search-overlay").show();
+      $("#beautifuljekyll-search-overlay").addClass("is-open").show();
       $("#nav-search-input").focus().select();
       $("body").addClass("overflow-hidden");
     });
     $("#nav-search-exit").click(function(e) {
       e.preventDefault();
-      $("#beautifuljekyll-search-overlay").hide();
+      $("#beautifuljekyll-search-overlay").removeClass("is-open").hide();
       $("body").removeClass("overflow-hidden");
     });
     $(document).on('keyup', function(e) {
       if (e.key == "Escape") {
-        $("#beautifuljekyll-search-overlay").hide();
+        $("#beautifuljekyll-search-overlay").removeClass("is-open").hide();
         $("body").removeClass("overflow-hidden");
       }
     });

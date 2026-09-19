@@ -1,0 +1,70 @@
+---
+layout: null
+permalink: /search.json
+---
+[
+{%- assign first = true -%}
+{%- for post in site.posts -%}
+  {%- unless first -%},{%- endunless -%}{%- assign first = false -%}
+  {
+    "title": {{ post.title | strip_html | jsonify }},
+    "content": {{ post.content | strip_html | normalize_whitespace | jsonify }},
+    "desc": {{ post.excerpt | strip_html | normalize_whitespace | truncatewords: 20 | jsonify }},
+    "url": {{ post.url | relative_url | jsonify }},
+    "category": "Blog"
+  }
+{%- endfor -%}
+{%- assign home_page = site.pages | where: "path", "index.html" | first -%}
+{%- if home_page -%}
+  {%- unless first -%},{%- endunless -%}{%- assign first = false -%}
+  {
+    "title": {{ home_page.title | default: "Home" | strip_html | jsonify }},
+    "content": {{ home_page.content | strip_html | normalize_whitespace | jsonify }},
+    "desc": "Home",
+    "url": {{ "/" | relative_url | jsonify }},
+    "category": "Home"
+  }
+{%- endif -%}
+{%- assign blog_page = site.pages | where: "path", "blog.html" | first -%}
+{%- if blog_page -%}
+  {%- unless first -%},{%- endunless -%}{%- assign first = false -%}
+  {
+    "title": {{ blog_page.title | default: "Blog" | strip_html | jsonify }},
+    "content": {{ blog_page.content | strip_html | normalize_whitespace | jsonify }},
+    "desc": {{ blog_page.subtitle | default: "Blog" | jsonify }},
+    "url": {{ "/blog" | relative_url | jsonify }},
+    "category": "Blog"
+  }
+{%- endif -%}
+{%- assign contact_page = site.pages | where: "path", "contact.md" | first -%}
+{%- if contact_page -%}
+  {%- unless first -%},{%- endunless -%}{%- assign first = false -%}
+  {
+    "title": {{ contact_page.title | default: "Contact" | strip_html | jsonify }},
+    "content": {{ contact_page.content | strip_html | normalize_whitespace | jsonify }},
+    "desc": {{ contact_page.subtitle | default: "Contact" | jsonify }},
+    "url": {{ "/contact" | relative_url | jsonify }},
+    "category": "Contact"
+  }
+{%- endif -%}
+{%- assign projects_page = site.pages | where: "path", "projects.md" | first -%}
+{%- if projects_page -%}
+  {%- unless first -%},{%- endunless -%}{%- assign first = false -%}
+  {
+    "title": {{ projects_page.title | default: "Projects" | strip_html | jsonify }},
+    "content": {{ projects_page.subtitle | append: " " | append: projects_page.description | jsonify }},
+    "desc": {{ projects_page.subtitle | default: "Projects" | jsonify }},
+    "url": {{ "/projects/" | relative_url | jsonify }},
+    "category": "Projects"
+  }
+  {%- for project in projects_page.projects -%}
+    ,{
+      "title": {{ project.title | strip_html | jsonify }},
+      "content": {{ project.description | strip_html | normalize_whitespace | jsonify }},
+      "desc": {{ project.description | strip_html | normalize_whitespace | truncatewords: 20 | jsonify }},
+      "url": {{ "/projects/" | relative_url | jsonify }},
+      "category": "Projects"
+    }
+  {%- endfor -%}
+{%- endif -%}
+]

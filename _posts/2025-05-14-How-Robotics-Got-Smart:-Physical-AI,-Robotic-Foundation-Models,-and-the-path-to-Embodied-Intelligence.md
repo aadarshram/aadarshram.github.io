@@ -3,7 +3,10 @@ layout: post
 title: "How Robotics Got Smart: Physical AI, Robotic Foundation Models, and the Path to Embodied Intelligence"
 subtitle: How LLMs led me into the next frontier of embodied AI 
 cover-img: /assets/img/robots.png
-tags: Concept, Research
+tags:
+  - Robotics
+  - AI
+  - Notes
 comments: true
 mathjax: true
 author: Aadarsh Ramachandran

@@ -2,7 +2,8 @@
 layout: post
 title: On Positional Embeddings in Transformers
 subtitle: An intuitive exploration of the idea behind positional embeddings.
-tags: Concept, Research
+tags:
+  - AI
 comments: true
 mathjax: true
 author: Aadarsh Ramachandran

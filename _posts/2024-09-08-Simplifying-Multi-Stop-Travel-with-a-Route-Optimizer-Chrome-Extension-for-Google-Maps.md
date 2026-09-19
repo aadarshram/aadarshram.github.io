@@ -5,7 +5,8 @@ subtitle: Stop Guessing, Start Optimizing!
 cover-img: /assets/img/maps.jpg
 thumbnail-img: /assets/img/maps.jpg
 share-img: /assets/img/maps.jpg
-tags: 
+tags:
+  - Software 
 author: Aadarsh Ramachandran
 readtime: true
 ---

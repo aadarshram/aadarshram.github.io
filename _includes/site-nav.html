@@ -14,15 +14,15 @@
     <li><a href="{{ '/assets/cv.pdf' | relative_url }}" target="_blank" rel="noopener">CV</a></li>
     {% if site.post_search %}
       <li>
-        <a href="#" class="nav-search-link" title="Search">
-          Search <span class="fa fa-search" aria-hidden="true"></span>
+        <a href="#" class="nav-search-link" title="Search" aria-label="Search">
+          <span class="fa fa-search" aria-hidden="true"></span>
         </a>
       </li>
     {% endif %}
   </ul>
   <div class="site-nav-tools">
-    <label class="switch" title="Toggle light/dark mode">
-      <input type="checkbox" aria-label="Toggle dark mode">
+    <label class="switch" title="Toggle light or dark mode. Follows the system setting until you choose.">
+      <input type="checkbox" aria-label="Toggle dark mode. Follows the system setting until you choose.">
       <span class="slider round"></span>
     </label>
   </div>

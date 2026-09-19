@@ -5,7 +5,9 @@ subtitle: Your all-in-one nutrition analysis app designed to empower informed de
 cover-img: /assets/img/consumerwise_cover.jpg
 thumbnail-img: /assets/img/consumerwise_logo.jpg
 share-img: /assets/img/consumerwise_logo.jpg
-tags: Web Application, Google Cloud, Gen-AI
+tags:
+  - AI
+  - Software
 author: Aadarsh Ramachandran
 readtime: true
 ---

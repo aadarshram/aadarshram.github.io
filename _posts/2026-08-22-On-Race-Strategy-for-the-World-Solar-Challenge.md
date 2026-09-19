@@ -4,7 +4,8 @@ title: "On Race Strategy for the World Solar Challenge"
 subtitle: A brief on building a sufficient strategy model — one speed a day
 cover-img: /assets/img/agnirath.jpg
 share-img: /assets/img/agnirath.jpg
-tags: Optimization, Control
+tags:
+  - Control
 comments: true
 mathjax: true
 author: Aadarsh Ramachandran

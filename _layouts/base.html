@@ -25,29 +25,35 @@ common-js:
 {% include head.html %}
 
 <body class="no-top-nav has-landing-hero{% if page.url == '/' %} is-home{% endif %}">
-  {% comment %} Temporarily disabled sidebar preload
   <script>
     (function () {
       try {
-        // Home / first landing stays full-bleed; other pages preload docked.
-        if (
-          window.matchMedia("(min-width: 992px)").matches &&
-          !document.body.classList.contains("is-home")
-        ) {
-          document.documentElement.classList.add("preload-landing-docked");
-          document.body.classList.add("landing-docked");
-        }
+        var saved = localStorage.getItem("theme");
+        var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        var isDark = saved ? saved === "dark" : prefersDark;
+        document.documentElement.classList.toggle("dark-mode", isDark);
+        document.body.classList.toggle("dark-mode", isDark);
+        document.documentElement.style.colorScheme = isDark ? "dark" : "light";
       } catch (e) {}
     })();
   </script>
-  {% endcomment %}
-
   {% include gtm_body.html %}
 
+  <div class="site-nav-shell">
+    {% include site-nav.html %}
+  </div>
+  <script>
+    (function () {
+      try {
+        var isDark = document.documentElement.classList.contains("dark-mode");
+        document.body.classList.toggle("dark-mode", isDark);
+        document.querySelectorAll(".switch input").forEach(function (input) {
+          input.checked = isDark;
+        });
+      } catch (e) {}
+    })();
+  </script>
   <div class="landing-first-screen">
-    <div class="site-nav-shell">
-      {% include site-nav.html %}
-    </div>
     {% include site-hero.html %}
   </div>
   {% include search.html %}

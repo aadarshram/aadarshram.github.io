@@ -28,6 +28,8 @@ navbar-links:
   Home: "https://aadarshram.github.io"
   Blog: "blog"
   Projects: "projects"
+  Github: "github"
+  Gists: "gists"
   Contact: "contact"
   # Resources:
   #   - Beautiful Jekyll: "https://beautifuljekyll.com"
@@ -60,7 +62,7 @@ navbar-links:
 # Uncomment the links you want to show and add your information to each one.
 social-network-links:
   email: "ramachandranaadarsh@gmail.com"
-  # rss: true  # remove this line if you don't want to show an RSS link at the bottom
+  rss: true
   # facebook: deanattali
   github: aadarshram
   twitter: aadarsh_r_
@@ -94,7 +96,7 @@ social-network-links:
 
 # If you want your website to generate an RSS feed, provide a description
 # The URL for the feed will be https://<your_website>/feed.xml
-# rss-description: This website is a virtual proof that I'm awesome
+rss-description: Notes on robotics, AI, and building what's missing.
 
 ###########################
 # --- General options --- #
@@ -189,18 +191,11 @@ gtag: "G-47D4CV7WLN"
 # Matomo (aka Piwik) Web statistics
 # Uncomment the following section to enable Matomo. The opt-out parameter controls
 # whether or not you want to allow users to opt out of tracking.
-matomo:
-  site_id: "9"
-  uri: "demo.wiki.pro"
-  opt-out: true
-  
-# repo color theme
-repo_theme_light: default       # https://github.com/anuraghazra/github-readme-stats/blob/master/themes/README.md
-repo_theme_dark: dark           # https://github.com/anuraghazra/github-readme-stats/blob/master/themes/README.md
-repo_trophies:
-  enabled: true
-  theme_light: flat    # https://github.com/ryo-ma/github-profile-trophy
-  theme_dark: gitdimmed  # https://github.com/ryo-ma/github-profile-trophy
+#matomo:
+#  site_id: "9"
+#  uri: "demo.wiki.pro"
+#  opt-out: true
+
 # Google Universal Analytics ID -- deprecated
 # As of July 2023 this is no longer supported by Google! If you are still using `google_analytics`,
 # you should switch to using the `gtag` field above instead.
@@ -243,21 +238,17 @@ repo_trophies:
 #    siteKey  : # You need to apply for a site key on Google
 #    secret   : # Encrypt your password by going to https://<your-own-api>/v3/encrypt/<your-site-secret>
 
-# To use giscus comments:
-# (0) Uncomment the following giscus section, (1) Enable Discussions in your GitHub repository, 
-# (2) Install the giscus app in your repository (details at https://giscus.app),
-# (3) Fill in *all* the parameters below 
-# See more details about giscus and each of the following parameters at https://giscus.app
-#giscus:
-#  hostname: giscus.app # Replace with your giscus instance's hostname if self-hosting
-#  repository: # GitHub username/repository eg. "daattali/beautiful-jekyll"
-#  repository-id: # ID of your repository, retrieve this info from https://giscus.app
-#  category: Announcements # Category name of your GitHub Discussion posts
-#  category-id: # ID of your category, retrieve this info from https://giscus.app
-#  mapping: pathname
-#  reactions-enabled: 1
-#  emit-metadata: 0
-#  theme: light
+# Giscus (blog posts only)
+giscus:
+  hostname: giscus.app
+  repository: aadarshram/aadarshram.github.io
+  repository-id: R_kgDOMal7pQ
+  category: General
+  category-id: DIC_kwDOMal7pc4DF8eW
+  mapping: pathname
+  reactions-enabled: 1
+  emit-metadata: 0
+  theme: preferred_color_scheme
 
 ################
 # --- Misc --- #
@@ -274,11 +265,10 @@ date_format: "%B %-d, %Y"
 #################################################################################
 
 # Output options (more information on Jekyll's site)
-timezone: "America/Toronto"
+timezone: "Asia/Kolkata"
 markdown: kramdown
 highlighter: rouge
 permalink: /:year-:month-:day-:title/
-paginate: 5
 
 kramdown:
   input: GFM
@@ -298,6 +288,7 @@ defaults:
       path: "" # any file that's not a post will be a "page" layout by default
     values:
       layout: "page"
+      comments: false
 
 # Exclude these files from production site
 exclude:
@@ -312,7 +303,6 @@ exclude:
   - vendor
 
 plugins:
-  - jekyll-paginate
   - jekyll-sitemap
 
 # Beautiful Jekyll / Dean Attali

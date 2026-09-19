@@ -5,7 +5,8 @@ subtitle: Why I chose to start this site
 cover-img: /assets/img/blog.jpg
 thumbnail-img: /assets/img/blog.jpg
 share-img: /assets/img/blog.jpg
-tags: 
+tags:
+  - Notes 
 author: Aadarsh Ramachandran
 readtime: true
 ---
