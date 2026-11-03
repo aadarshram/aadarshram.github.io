@@ -15,6 +15,13 @@ full-width: true
 # - github: GitHub repo link
 
 projects:
+  - title: Chambolle-Pock Point Cloud Denoising (Course Project)
+    date: 2026
+    categories: [optimization]
+    image: /assets/img/chambolle_pock_spot.png
+    description: Studied and implemented the Chambolle-Pock algorithm for 3D point cloud color denoising using ROF and TV-L1 models.
+    report: "https://github.com/aadarshram/Chambolle-Pock-Point-Cloud-Denoising/blob/main/docs/presentation/chambolle_pock_presentation.pdf"
+    github: "https://github.com/aadarshram/Chambolle-Pock-Point-Cloud-Denoising"
   - title: Overtone (Course Project)
     date: 2026
     categories: [hardware]
@@ -37,7 +44,7 @@ projects:
     github: "https://github.com/aadarshram/swarm-rescue"
   - title: Agnirath
     date: 2024
-    categories: [control]
+    categories: [control, optimization]
     image: /assets/img/agnirath.jpg
     description: Race strategy for solar car racing at World Solar Challenge 2025, Australia. Built constrained optimization models to optimize time and energy efficiency. 
     report: "/2026-08-22-On-Race-Strategy-for-the-World-Solar-Challenge/"
@@ -109,6 +116,7 @@ projects:
         <button type="button" class="projects-filter-btn is-active" data-filter="all">All</button>
         <button type="button" class="projects-filter-btn" data-filter="robotics">Robotics</button>
         <button type="button" class="projects-filter-btn" data-filter="control">Control</button>
+        <button type="button" class="projects-filter-btn" data-filter="optimization">Optimization</button>
         <button type="button" class="projects-filter-btn" data-filter="ai">AI</button>
         <button type="button" class="projects-filter-btn" data-filter="hardware">Hardware</button>
         <button type="button" class="projects-filter-btn" data-filter="software">Software</button>
@@ -142,7 +150,7 @@ projects:
             {% endif %}
             {% if project.categories %}
               {% for category in project.categories %}
-                <span class="project-category-badge">{{ category | replace: "robotics", "Robotics" | replace: "control", "Control" | replace: "ai", "AI" | replace: "hardware", "Hardware" | replace: "software", "Software" }}</span>
+                <span class="project-category-badge">{{ category | replace: "robotics", "Robotics" | replace: "control", "Control" | replace: "optimization", "Optimization" | replace: "ai", "AI" | replace: "hardware", "Hardware" | replace: "software", "Software" }}</span>
               {% endfor %}
             {% endif %}
           </div>
