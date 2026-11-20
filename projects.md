@@ -15,14 +15,14 @@ full-width: true
 # - github: GitHub repo link
 
 projects:
-  - title: SafeSINDy
+  - title: SafeSINDy (Course Project)
     date: 2026
     categories: [control]
     image: /assets/img/safesindy_cartpole.png
     description: Extending SINDy-RL for test-time safety constraints via SINDy-based CBFs.
     report: "https://github.com/aadarshram/safeSINDy/blob/main/docs/SINDy-RL%20Paper%20and%20Extension.pptx"
     github: "https://github.com/aadarshram/safeSINDy"
-  - title: From Slow Planning to Fast Decisions
+  - title: From Slow Planning to Fast Decisions (Course Project)
     date: 2026
     categories: [ai]
     image: /assets/img/slow2fast_fig1.png
