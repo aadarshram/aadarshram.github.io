@@ -15,6 +15,20 @@ full-width: true
 # - github: GitHub repo link
 
 projects:
+  - title: SafeSINDy
+    date: 2026
+    categories: [control]
+    image: /assets/img/safesindy_cartpole.png
+    description: Extending SINDy-RL for test-time safety constraints via SINDy-based CBFs.
+    report: "https://github.com/aadarshram/safeSINDy/blob/main/docs/SINDy-RL%20Paper%20and%20Extension.pptx"
+    github: "https://github.com/aadarshram/safeSINDy"
+  - title: From Slow Planning to Fast Decisions
+    date: 2026
+    categories: [ai]
+    image: /assets/img/slow2fast_fig1.png
+    description: A Dual-Process framework for learning fast reactive policies from slow deliberate planners in PDDL.
+    report: "https://github.com/aadarshram/Slow2Fast/blob/main/docs/From_Slow_Planning_to_Fast_Decisions.pdf"
+    github: "https://github.com/aadarshram/Slow2Fast"
   - title: Chambolle-Pock Point Cloud Denoising (Course Project)
     date: 2026
     categories: [optimization]
