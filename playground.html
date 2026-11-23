@@ -1,0 +1,81 @@
+---
+layout: page
+title: Playground
+permalink: /playground/
+full-width: true
+no-header: true
+body-class: playground-page
+css:
+  - "/assets/css/playground.css"
+ext-js:
+  - href: "https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"
+    sri: "sha512-vnmn/Qqn6aG0POAc9mIGzjq0IybrvxJXYDafNvp9JSnDGxeF3pbkSqLvf+YGd5ku63pT7sa/jxHn7/d0mU8+tA=="
+js:
+  - "/assets/js/playground.js"
+---
+
+<div id="playground-root">
+  <div id="playground-canvas-mount"></div>
+
+  <div id="playground-hud">
+    <div id="playground-hint">
+      <span><b>WASD</b> move</span>
+      <span><b>Space</b> jump</span>
+      <span><b>F</b> <span data-prompt-text>summon rover</span></span>
+      <span><b>V</b> view</span>
+      <span><b>M</b> map</span>
+    </div>
+
+    <div id="playground-top-controls">
+      <button id="playground-sound-toggle" type="button" aria-label="Toggle sound">
+        <span class="fa fa-volume-mute" aria-hidden="true"></span>
+      </button>
+      <button id="playground-pov-toggle" type="button" aria-label="Change view">
+        <span class="fa fa-video" aria-hidden="true"></span>
+      </button>
+      <button id="playground-map-toggle" type="button" aria-label="Open map">
+        <span class="fa fa-map" aria-hidden="true"></span>
+      </button>
+    </div>
+
+    <div id="playground-speech-bubble" hidden>
+      <p data-speech-text></p>
+    </div>
+
+    <div id="playground-card" hidden>
+      <h3 data-card-title></h3>
+      <p data-card-text></p>
+    </div>
+
+    <div id="playground-joystick" hidden>
+      <div id="playground-joystick-knob"></div>
+    </div>
+
+    <div id="playground-touch-actions" hidden>
+      <button id="playground-touch-jump" type="button" aria-label="Jump">
+        <span class="fa fa-arrow-up" aria-hidden="true"></span>
+      </button>
+      <button id="playground-touch-rover" type="button" aria-label="Summon or park rover">
+        <span class="fa fa-car-side" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+
+  <div id="playground-map-overlay" hidden>
+    <div id="playground-map-panel">
+      <div class="playground-map-head">
+        <span>Map</span>
+        <button type="button" id="playground-map-close" aria-label="Close map">&times;</button>
+      </div>
+      <canvas id="playground-map-canvas" width="360" height="360"></canvas>
+      <p class="playground-map-hint">Click a station to autopilot there.</p>
+    </div>
+  </div>
+
+  <div id="playground-unsupported" hidden>
+    <div>
+      <h2>Can't run here</h2>
+      <p>This playground needs WebGL, which this browser doesn't seem to support. Try a recent version of Chrome, Firefox, or Safari.</p>
+    </div>
+  </div>
+</div>

@@ -3,28 +3,33 @@
   --page-pad-y: clamp(1rem, 3vw, 2rem);
   --site-nav-height: 3.5rem;
   --content-max-width: 1280px;
-  --body-font: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --header-font: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --body-font: "Source Serif 4", Georgia, serif;
+  --header-font: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color-scheme: light;
 }
 
 body,
-.btn,
 .card,
 .card-text,
+input,
+textarea {
+  font-family: var(--body-font);
+}
+
+.btn,
 .card-title,
 .site-nav,
 .site-nav-shell,
-input,
 button,
-textarea,
 .page-link {
-  font-family: var(--body-font);
+  font-family: var(--header-font);
 }
 
 html.dark-mode {
   color-scheme: dark;
   background-color: #121212;
+  --dark-accent: #e0935a;
+  --dark-accent-strong: #f0ac79;
 }
 
 .switch {
@@ -103,7 +108,11 @@ body.dark-mode header {
 
 /* Dark mode for links */
 body.dark-mode a {
-  color: #faf9f6; /* Light color for links */
+  color: var(--dark-accent);
+}
+
+body.dark-mode a:hover {
+  color: var(--dark-accent-strong);
 }
 
 /* Dark mode for main content */
@@ -1110,6 +1119,40 @@ body.dark-mode .contact-socials .fa-stack .fa-inverse {
   color: #121212;
 }
 
+.home-masthead {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: clamp(1.75rem, 4vw, 2.75rem) var(--page-pad-x) 0.25rem;
+}
+
+.home-masthead h1 {
+  margin: 0 0 0.4rem;
+  font-size: clamp(1.75rem, 3.2vw, 2.5rem);
+  font-weight: 700;
+}
+
+.home-masthead-tagline {
+  margin: 0;
+  max-width: 640px;
+  font-style: italic;
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  color: var(--footer-text-col);
+}
+
+body.dark-mode .home-masthead-tagline {
+  color: #a39d8e;
+}
+
+.home-masthead-rule {
+  margin: 1.1rem 0 0;
+  border: none;
+  border-top: 1px solid rgba(42, 38, 32, 0.18);
+}
+
+body.dark-mode .home-masthead-rule {
+  border-top-color: rgba(255, 255, 255, 0.14);
+}
+
 .home-sections-layout {
   display: grid;
   grid-template-columns: 1fr;
@@ -1575,15 +1618,20 @@ body.dark-mode .project-card-overlay .project-category-badge {
 }
 
 body.dark-mode .blog-tags,
-body.dark-mode .blog-tags span,
-body.dark-mode .blog-tags a,
-body.dark-mode .blog-tags a:hover {
+body.dark-mode .blog-tags span {
   color: #faf9f6;
   opacity: 1;
 }
 
+body.dark-mode .blog-tags a,
 body.dark-mode .blog-tags a:hover {
-  border-color: #faf9f6;
+  color: var(--dark-accent);
+  opacity: 1;
+}
+
+body.dark-mode .blog-tags a:hover {
+  color: var(--dark-accent-strong);
+  border-color: var(--dark-accent-strong);
 }
 
 .post-read-more,
@@ -1626,7 +1674,7 @@ body.dark-mode .post-read-more:focus {
   color: #111;
   border-radius: 999px;
   padding: 0.45rem 0.85rem;
-  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  font-family: var(--header-font) !important;
   font-size: 0.85rem;
   font-weight: 700;
   text-transform: none;
@@ -1674,7 +1722,7 @@ body.dark-mode .intro-header:not(.big-img) .page-subheading {
   color: #111;
   border-radius: 999px;
   padding: 0.45rem 0.85rem;
-  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  font-family: var(--header-font) !important;
   font-size: 0.85rem;
   font-weight: 700;
 }

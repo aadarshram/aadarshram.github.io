@@ -6,6 +6,12 @@ full-width: true
 no-header: true
 ---
 
+<header class="home-masthead">
+  <h1>{{ site.title }}</h1>
+  <p class="home-masthead-tagline">{{ site.site-hero-subtitle | strip_html }}</p>
+  <hr class="home-masthead-rule">
+</header>
+
 <div class="home-sections-layout">
   <main class="home-main-content">
     <section id="about" class="home-section">
@@ -62,6 +68,9 @@ no-header: true
 
       <p>
         And somewhere in between, I try to keep life light with my quirkiness and one-liner dad-jokes. I like to think of it as my Archimedes’ principle: stay buoyant — otherwise, you’ll drown. See what I did there? :)
+      </p>
+      <p>
+        I also build little explorable worlds when the idea won't leave me alone — like <a href="/playground/">this one</a>, a small, driveable vision of robots and people getting along.
       </p>
     </section>
   </main>

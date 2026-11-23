@@ -6,8 +6,7 @@ common-ext-css:
   - href: "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     sri: "sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
   - "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-  - "https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"
-  - "https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
+  - "https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Archivo:ital,wght@0,500;0,600;0,700;1,500&display=swap"
 common-ext-js:
   - href: "https://code.jquery.com/jquery-3.5.1.slim.min.js"
     sri: "sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
@@ -24,7 +23,7 @@ common-js:
 <!-- Beautiful Jekyll 6.0.1 | Copyright Dean Attali 2023 -->
 {% include head.html %}
 
-<body class="no-top-nav has-landing-hero{% if page.url == '/' %} is-home{% endif %}">
+<body class="no-top-nav has-landing-hero{% if page.url == '/' %} is-home{% endif %}{% if page.body-class %} {{ page.body-class }}{% endif %}">
   <script>
     (function () {
       try {
@@ -53,9 +52,11 @@ common-js:
       } catch (e) {}
     })();
   </script>
+  {% unless page.url == "/" %}
   <div class="landing-first-screen">
     {% include site-hero.html %}
   </div>
+  {% endunless %}
   {% include search.html %}
 
   {{ content }}

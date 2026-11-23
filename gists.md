@@ -16,9 +16,9 @@ js:
   <section class="github-profile" aria-labelledby="gists-profile-heading">
     <h2 id="gists-profile-heading" class="sr-only">Profile</h2>
     <div class="github-profile-inner">
-      <img class="github-avatar" src="https://avatars.githubusercontent.com/u/142728380?v=4" alt="GitHub profile photo of Aadarsh Ramachandiran" width="112" height="112">
+      <img class="github-avatar" src="https://avatars.githubusercontent.com/u/142728380?v=4" alt="GitHub profile photo of Aadarsh Ramachandran" width="112" height="112">
       <div class="github-profile-meta">
-        <p class="github-name" data-github-name>Aadarsh Ramachandiran</p>
+        <p class="github-name" data-github-name>Aadarsh Ramachandran</p>
         <a class="github-handle" href="https://gist.github.com/{{ site.social-network-links.github }}" target="_blank" rel="noopener">gist.github.com/{{ site.social-network-links.github }}</a>
         <p class="github-bio" data-github-bio hidden></p>
       </div>
